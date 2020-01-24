@@ -27,7 +27,25 @@ namespace JaskiniaGier.Models.Repositories
                     ImagePath = "witcher.jpg",
                     Price = "30 PLN",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[0]
-                }
+                },
+                new Game
+                {
+                    GameId = 2,
+                    Title = "Anno",
+                    GameDescription = "Strategia ekonomiczna od Ubisoftu",
+                    ImagePath = "anno.jpg",
+                    Price = "100 PLN",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[1]
+                },
+                 new Game
+                {
+                    GameId = 3,
+                    Title = "Gothic",
+                    GameDescription = "RPG od Piranha Bytes",
+                    ImagePath = "anno.jpg",
+                    Price = "10 PLN",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[0]
+                },
             };
 
      

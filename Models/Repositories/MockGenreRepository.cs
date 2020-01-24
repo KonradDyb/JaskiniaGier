@@ -18,6 +18,18 @@ namespace JaskiniaGier.Models.Repositories
                 {
                     GenreId = 1,
                     GenreName = "Fabularne",        
+                },
+
+                new Genre
+                {
+                    GenreId = 2,
+                    GenreName = "Przygodowe",
+                },
+
+                new Genre
+                {
+                    GenreId = 3,
+                    GenreName = "Strategiczne",
                 }
 
             };

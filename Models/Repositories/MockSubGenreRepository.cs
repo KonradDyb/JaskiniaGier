@@ -20,7 +20,13 @@ namespace JaskiniaGier.Models.Repositories
                     SubGenreId = 1,
                     SubGenreName = "TTP",
                     Genre = _genreRepository.Genres.ToList()[0]
-                }
+                },
+                new SubGenre
+                {
+                    SubGenreId = 2,
+                    SubGenreName = "RTS",
+                    Genre = _genreRepository.Genres.ToList()[2]
+                },
 
             };
 
