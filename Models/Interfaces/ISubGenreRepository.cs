@@ -9,6 +9,6 @@ namespace JaskiniaGier.Models.Interfaces
 {
     public interface ISubGenreRepository
     {
-        public IEnumerable<SubGenre> SubGenres { get; set; }
+        public IEnumerable<SubGenre> SubGenres { get; }
     }
 }
