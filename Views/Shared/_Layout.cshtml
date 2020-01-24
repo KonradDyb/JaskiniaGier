@@ -18,7 +18,7 @@
                     <ul>
                         <li><a asp-controller="Home" asp-action="Privacy">Symulacyjne</a></li>
                         <li class="hover-me">
-                            <a href="#">Fabularne</a><i class="fa fa-angle-right"></i>
+                            <a asp-controller="Home" asp-action="ListByGenre" asp-route-genre="Fabularne">Fabularne</a><i class="fa fa-angle-right"></i>
                             <div class="sub-menu-2">
                                 <ul>
                                     <li><a href="#">Hack & Slash</a></li>
@@ -27,7 +27,7 @@
                             </div>
                         </li>
                         <li class="hover-me">
-                            <a href="#">Strategiczne</a><i class="fa fa-angle-right"></i>
+                            <a asp-controller="Home" asp-action="ListByGenre" asp-route-genre="Strategiczne">Strategiczne</a><i class="fa fa-angle-right"></i>
                             <div class="sub-menu-2">
                                 <ul>
                                     <li><a href="#">Ekonomiczne</a></li>
