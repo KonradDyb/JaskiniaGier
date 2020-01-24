@@ -5,44 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - JaskiniaGier</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/navbar.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-     
-        <div class="collapse navbar-collapse" id="collapse_target">
-        <a class="navbar-text" asp-controller="Home" asp-action="Index">JaskiniaGraczy</a>
-
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="dropdown_target" href="#">
-                Dropdown
-                <span class="caret"></span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdown_target">
-                    <a class="dropdown-item">Shop</a>
-                    @*<div class="dropdown-divider"></div>*@
-                    <a class="dropdown-item">CSS</a>
-                    <a class="dropdown-item">Bootstrap</a>
-
+    <div class="menu-bar">
+        <ul>
+            <li class="active"><i class="fa fa-home"></i><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li>
+                <a href="#"><i class="fa fa-gamepad"></i>Gry</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Privacy">Symulacyjne</a></li>
+                        <li class="hover-me">
+                            <a href="#">Fabularne</a><i class="fa fa-angle-right"></i>
+                            <div class="sub-menu-2">
+                                <ul>
+                                    <li><a href="#">Hack & Slash</a></li>
+                                    <li><a href="#">MMORPG</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="hover-me">
+                            <a href="#">Strategiczne</a><i class="fa fa-angle-right"></i>
+                            <div class="sub-menu-2">
+                                <ul>
+                                    <li><a href="#">Ekonomiczne</a></li>
+                                    <li><a href="#">RTS</a></li>
+                                    <li><a href="#">Taktyczne</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Index">Link 2</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link 3</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link 4</a>
+            <li>
+                <a href="#"><i class="fa fa-user"></i>About Us</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a href="#">Mission</a></li>
+                        <li><a href="#">Vision</a></li>
+                        <li><a href="#">Team</a></li>
+                    </ul>
+                </div>
             </li>
         </ul>
-            </div>
-        </nav>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
