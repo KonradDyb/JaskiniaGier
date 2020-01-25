@@ -18,16 +18,39 @@ namespace JaskiniaGier.Models.Repositories
                 new SubGenre
                 {
                     SubGenreId = 1,
-                    SubGenreName = "TTP",
+                    SubGenreName = null,
                     Genre = _genreRepository.Genres.ToList()[0]
                 },
                 new SubGenre
                 {
                     SubGenreId = 2,
+                    SubGenreName = "Hack & Slash",
+                    Genre = _genreRepository.Genres.ToList()[0]
+                },
+                new SubGenre
+                {
+                    SubGenreId = 3,
+                    SubGenreName = "MMORPG",
+                    Genre = _genreRepository.Genres.ToList()[0]
+                },
+                new SubGenre
+                {
+                    SubGenreId = 4,
                     SubGenreName = "RTS",
                     Genre = _genreRepository.Genres.ToList()[2]
                 },
-
+                new SubGenre
+                {
+                    SubGenreId = 5,
+                    SubGenreName = "Taktyczne",
+                    Genre = _genreRepository.Genres.ToList()[2]
+                },
+                new SubGenre
+                {
+                    SubGenreId = 6,
+                    SubGenreName = "Ekonomiczne",
+                    Genre = _genreRepository.Genres.ToList()[2]
+                },
             };
 
    

@@ -35,17 +35,53 @@ namespace JaskiniaGier.Models.Repositories
                     GameDescription = "Strategia ekonomiczna od Ubisoftu",
                     ImagePath = "anno.jpg",
                     Price = "100 PLN",
-                    SubGenre = _subGenreRepository.SubGenres.ToList()[1]
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[5]
                 },
                  new Game
                 {
                     GameId = 3,
                     Title = "Gothic",
                     GameDescription = "RPG od Piranha Bytes",
-                    ImagePath = "anno.jpg",
+                    ImagePath = "gothic.jpg",
                     Price = "10 PLN",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[0]
                 },
+                 new Game
+                {
+                    GameId = 4,
+                    Title = "Diablo",
+                    GameDescription = "Hack&Slash od Blizzarda",
+                    ImagePath = "diablo.jpg",
+                    Price = "30 PLN",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[1]
+                },
+                 new Game
+                {
+                    GameId = 5,
+                    Title = "Commandos",
+                    GameDescription = "Strategia taktyczna od Pyro Studios",
+                    ImagePath = "commandos.jpg",
+                    Price = "10 PLN",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[4]
+                },
+                 new Game
+                {
+                    GameId = 6,
+                    Title = "RimWorld",
+                    GameDescription = "Strategia RTS od Ludeon Studios",
+                    ImagePath = "rimworld.jpg",
+                    Price = "130 PLN",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[3]
+                },
+                  new Game
+                {
+                    GameId = 7,
+                    Title = "World Of Warcraft: Battle For Azeroth",
+                    GameDescription = "Rozszerzenie do WoWa",
+                    ImagePath = "wow.jpg",
+                    Price = "170 PLN",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[2]
+                }
             };
 
      
