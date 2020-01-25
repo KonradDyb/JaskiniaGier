@@ -42,7 +42,11 @@ namespace JaskiniaGier.Controllers
             var allGames = _gameRepository.Games.Where(x => x.SubGenre.Genre.GenreName == genre);
             return View(allGames);
         }
-
+        public IActionResult ListBySubGenre(string subGenre)
+        {
+            var allGames = _gameRepository.Games.Where(x => x.SubGenre.SubGenreName == subGenre);
+            return View(allGames);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
