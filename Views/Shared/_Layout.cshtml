@@ -21,8 +21,8 @@
                             <a asp-controller="Home" asp-action="ListByGenre" asp-route-genre="Fabularne">Fabularne</a><i class="fa fa-angle-right"></i>
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a href="#">Hack & Slash</a></li>
-                                    <li><a href="#">MMORPG</a></li>
+                                    <li><a asp-controller="Home" asp-action="ListBySubGenre" asp-route-subGenre="Hack & Slash">Hack & Slash</a></li>
+                                    <li><a asp-controller="Home" asp-action="ListBySubGenre" asp-route-subGenre="MMORPG">MMORPG</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -30,9 +30,9 @@
                             <a asp-controller="Home" asp-action="ListByGenre" asp-route-genre="Strategiczne">Strategiczne</a><i class="fa fa-angle-right"></i>
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a href="#">Ekonomiczne</a></li>
-                                    <li><a href="#">RTS</a></li>
-                                    <li><a href="#">Taktyczne</a></li>
+                                    <li><a asp-controller="Home" asp-action="ListBySubGenre" asp-route-subGenre="Ekonomiczne">Ekonomiczne</a></li>
+                                    <li><a asp-controller="Home" asp-action="ListBySubGenre" asp-route-subGenre="RTS">RTS</a></li>
+                                    <li><a asp-controller="Home" asp-action="ListBySubGenre" asp-route-subGenre="Taktyczne">Taktyczne</a></li>
                                 </ul>
                             </div>
                         </li>
