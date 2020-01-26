@@ -84,7 +84,15 @@ namespace JaskiniaGier.Models.Repositories
                 }
             };
 
-     
-  
+        public IEnumerable<Game> GetGamesByGenre(string genre)
+        {
+            return Games.Where(x => x.SubGenre.Genre.GenreName == genre);
+        }
+
+        public IEnumerable<Game> GetGamesBySubGenre(string subGenre)
+        {
+            return Games.Where(x => x.SubGenre.SubGenreName == subGenre);
+        }
+
     }
 }

@@ -17,6 +17,7 @@ namespace JaskiniaGier.Controllers
         private readonly ISubGenreRepository _subGenreRepository;
         private readonly IGenreRepository _genreRepository;
         private readonly IGameRepository _gameRepository;
+        public string Dupa { get; set; }
 
         public HomeController(ILogger<HomeController> logger, ISubGenreRepository subGenreRepository,
             IGenreRepository genreRepository, IGameRepository gameRepository)
@@ -39,12 +40,12 @@ namespace JaskiniaGier.Controllers
 
         public IActionResult ListByGenre(string genre)
         {
-            var allGames = _gameRepository.Games.Where(x => x.SubGenre.Genre.GenreName == genre);
+            var allGames = _gameRepository.GetGamesByGenre(genre);
             return View(allGames);
         }
         public IActionResult ListBySubGenre(string subGenre)
         {
-            var allGames = _gameRepository.Games.Where(x => x.SubGenre.SubGenreName == subGenre);
+            var allGames = _gameRepository.GetGamesBySubGenre(subGenre);
             return View(allGames);
         }
 
