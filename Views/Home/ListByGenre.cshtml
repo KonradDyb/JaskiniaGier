@@ -3,13 +3,13 @@
 
 @foreach (var game in Model)
 {
+    <img src="~/images/@game.ImagePath" />
     <p>@game.GameId</p>
     <p>@game.Title</p>
     <p>@game.SubGenre.SubGenreName</p>
     <p>@game.Price</p>
     <p>@game.GameDescription</p>
     <p>@game.SubGenre.Genre.GenreName</p>
-
 
 
 }

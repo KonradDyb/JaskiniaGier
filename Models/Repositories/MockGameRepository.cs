@@ -24,14 +24,14 @@ namespace JaskiniaGier.Models.Repositories
                     GameId = 1,
                     Title = "Wiedźmin Edycja Rozszerzona",
                     GameDescription = "Nazywasz się Geralt z Rivii i jesteś wiedźminem, czyli za pieniądze zabijasz potwory. Przeszedłeś specjalne szkolenie, aby być najlepszym w swoim fachu, a twoje ciało zostało wzmocnione silnymi eliksirami. Masz amnezję i nie pamiętasz swojej przeszłości. Kaer Morhen, ostatnia twierdza wiedźminów, zostało zaatakowane przez tajemniczą organizację, gdy zaczynałeś leczyć tam swoje rany. Wygraliście bitwę, lecz straciliście sekretny przepis na mutagen - substancję potrzebną do tworzenia wiedźminów. Ci z twoich braci, którzy ocaleli, wyruszają, aby go odnaleźć i ukarać winnych. Pamiętasz czy nie, jesteś teraz jednym z nich.",
-                    ImagePath = "witcher.jpg",
+                    ImagePath = "wiedzmin.jpg",
                     Price = "30 PLN",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[0]
                 },
                 new Game
                 {
                     GameId = 2,
-                    Title = "Anno",
+                    Title = "Anno 1800",
                     GameDescription = "Strategia ekonomiczna od Ubisoftu",
                     ImagePath = "anno.jpg",
                     Price = "100 PLN",
