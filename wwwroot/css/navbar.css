@@ -5,12 +5,12 @@
 }
 
 body {
-    background-color: gray;
+    background-color:  #fff;
     font-family: sans-serif;
 }
 
 .menu-bar {
-    background: rgb(0,100,0);
+    background: rgb(0,0,0);
     text-align: center;
 }
 
@@ -32,7 +32,7 @@ body {
             }
 
             .active, .menu-bar ul li:hover {
-                background: #2bab0d;
+                background: rgb(0,100,75);
                 border-radius: 3px;
             }
 
@@ -47,7 +47,7 @@ body {
 .menu-bar ul li:hover .sub-menu-1 {
     display: block;
     position: absolute;
-    background: rgb(0,100,0);
+    background: rgb(0,0,0);
     margin-top: 15px;
     margin-left: -15px;
 }
@@ -87,5 +87,5 @@ body {
     display: block;
     margin-top: -40px;
     margin-left: 140px;
-    background: rgb(0,100,0);
+    background: rgb(0,0,0);
 }

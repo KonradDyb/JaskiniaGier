@@ -1,15 +1,38 @@
 ﻿@model IEnumerable<Game>
 
+<div class="container">
 
-@foreach (var game in Model)
-{
-    <img src="~/images/@game.ImagePath" />
-    <p>@game.GameId</p>
-    <p>@game.Title</p>
-    <p>@game.SubGenre.SubGenreName</p>
-    <p>@game.Price</p>
-    <p>@game.GameDescription</p>
-    <p>@game.SubGenre.Genre.GenreName</p>
+    <div class="row">
+        @foreach (var game in Model)
+        {
 
 
-}
+            <div class="col-md-3">
+                <div class="product-top">
+                    <img src="~/images/@game.ImagePath">
+                    <div class="overlay">
+                        <button type="button" class="btn btn-secondary" title="Quick Shop">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary" title="Add to Wishlist">
+                            <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-secondary" title="Add to Cart">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-bottom text-center">
+                    <br />
+                    <h5>@game.Price</h5>
+                </div>
+
+
+
+            </div>
+
+
+        }
+
+    </div>
+</div>

@@ -22,7 +22,7 @@ namespace JaskiniaGier.Models.Repositories
                 new Game
                 {
                     GameId = 1,
-                    Title = "Wiedźmin Edycja Rozszerzona",
+                    Title = "Wiedźmin 1",
                     GameDescription = "Nazywasz się Geralt z Rivii i jesteś wiedźminem, czyli za pieniądze zabijasz potwory. Przeszedłeś specjalne szkolenie, aby być najlepszym w swoim fachu, a twoje ciało zostało wzmocnione silnymi eliksirami. Masz amnezję i nie pamiętasz swojej przeszłości. Kaer Morhen, ostatnia twierdza wiedźminów, zostało zaatakowane przez tajemniczą organizację, gdy zaczynałeś leczyć tam swoje rany. Wygraliście bitwę, lecz straciliście sekretny przepis na mutagen - substancję potrzebną do tworzenia wiedźminów. Ci z twoich braci, którzy ocaleli, wyruszają, aby go odnaleźć i ukarać winnych. Pamiętasz czy nie, jesteś teraz jednym z nich.",
                     ImagePath = "wiedzmin.jpg",
                     Price = "30 PLN",
@@ -76,7 +76,7 @@ namespace JaskiniaGier.Models.Repositories
                   new Game
                 {
                     GameId = 7,
-                    Title = "World Of Warcraft: Battle For Azeroth",
+                    Title = "World Of Warcraft",
                     GameDescription = "Rozszerzenie do WoWa",
                     ImagePath = "wow.jpg",
                     Price = "170 PLN",
