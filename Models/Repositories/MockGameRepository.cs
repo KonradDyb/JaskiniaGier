@@ -25,7 +25,7 @@ namespace JaskiniaGier.Models.Repositories
                     Title = "Wiedźmin 1",
                     GameDescription = "Nazywasz się Geralt z Rivii i jesteś wiedźminem, czyli za pieniądze zabijasz potwory. Przeszedłeś specjalne szkolenie, aby być najlepszym w swoim fachu, a twoje ciało zostało wzmocnione silnymi eliksirami. Masz amnezję i nie pamiętasz swojej przeszłości. Kaer Morhen, ostatnia twierdza wiedźminów, zostało zaatakowane przez tajemniczą organizację, gdy zaczynałeś leczyć tam swoje rany. Wygraliście bitwę, lecz straciliście sekretny przepis na mutagen - substancję potrzebną do tworzenia wiedźminów. Ci z twoich braci, którzy ocaleli, wyruszają, aby go odnaleźć i ukarać winnych. Pamiętasz czy nie, jesteś teraz jednym z nich.",
                     ImagePath = "wiedzmin.jpg",
-                    Price = "30 PLN",
+                    Price = "30,00 ZŁ",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[0]
                 },
                 new Game
@@ -34,7 +34,7 @@ namespace JaskiniaGier.Models.Repositories
                     Title = "Anno 1800",
                     GameDescription = "Strategia ekonomiczna od Ubisoftu",
                     ImagePath = "anno.jpg",
-                    Price = "100 PLN",
+                    Price = "100,00 ZŁ",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[5]
                 },
                  new Game
@@ -43,7 +43,7 @@ namespace JaskiniaGier.Models.Repositories
                     Title = "Gothic",
                     GameDescription = "RPG od Piranha Bytes",
                     ImagePath = "gothic.jpg",
-                    Price = "10 PLN",
+                    Price = "10,00 ZŁ",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[0]
                 },
                  new Game
@@ -52,7 +52,7 @@ namespace JaskiniaGier.Models.Repositories
                     Title = "Diablo",
                     GameDescription = "Hack&Slash od Blizzarda",
                     ImagePath = "diablo.jpg",
-                    Price = "30 PLN",
+                    Price = "30,00 ZŁ",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[1]
                 },
                  new Game
@@ -61,7 +61,7 @@ namespace JaskiniaGier.Models.Repositories
                     Title = "Commandos",
                     GameDescription = "Strategia taktyczna od Pyro Studios",
                     ImagePath = "commandos.jpg",
-                    Price = "10 PLN",
+                    Price = "10,00 ZŁ",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[4]
                 },
                  new Game
@@ -70,7 +70,7 @@ namespace JaskiniaGier.Models.Repositories
                     Title = "RimWorld",
                     GameDescription = "Strategia RTS od Ludeon Studios",
                     ImagePath = "rimworld.jpg",
-                    Price = "130 PLN",
+                    Price = "130,00 ZŁ",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[3]
                 },
                   new Game
@@ -79,7 +79,7 @@ namespace JaskiniaGier.Models.Repositories
                     Title = "World Of Warcraft",
                     GameDescription = "Rozszerzenie do WoWa",
                     ImagePath = "wow.jpg",
-                    Price = "170 PLN",
+                    Price = "170,00 ZŁ",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[2]
                 }
             };
