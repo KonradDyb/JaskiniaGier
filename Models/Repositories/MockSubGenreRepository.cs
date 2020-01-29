@@ -51,6 +51,12 @@ namespace JaskiniaGier.Models.Repositories
                     SubGenreName = "Ekonomiczne",
                     Genre = _genreRepository.Genres.ToList()[2]
                 },
+                new SubGenre
+                {
+                    SubGenreId = 7,
+                    SubGenreName = null,
+                    Genre = _genreRepository.Genres.ToList()[3]
+                }
             };
 
    

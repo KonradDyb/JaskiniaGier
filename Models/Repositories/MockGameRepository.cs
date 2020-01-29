@@ -43,7 +43,7 @@ namespace JaskiniaGier.Models.Repositories
                     Title = "Gothic",
                     GameDescription = "RPG od Piranha Bytes",
                     ImagePath = "gothic.jpg",
-                    Price = "10,00 zł",
+                    Price = "12,00 zł",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[0]
                 },
                  new Game
@@ -88,8 +88,44 @@ namespace JaskiniaGier.Models.Repositories
                     Title = "Sid Meier's Civilization VI",
                     GameDescription = "Strategia Ekonomiczna od Firaxis Games",
                     ImagePath = "civ.jpg",
-                    Price = "44,00 zł",
+                    Price = "52,00 zł",
                     SubGenre = _subGenreRepository.SubGenres.ToList()[5]
+                },
+                    new Game
+                {
+                    GameId = 9,
+                    Title = "Farming Simulator 19",
+                    GameDescription = "Symulator rolina od GIANTS Software",
+                    ImagePath = "farming.jpg",
+                    Price = "78,00 zł",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[6]
+                },
+                    new Game
+                {
+                    GameId = 10,
+                    Title = "Green Hell",
+                    GameDescription = "Symulator survivalu od Creepy Jar",
+                    ImagePath = "greenhell.jpg",
+                    Price = "85,00 zł",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[6]
+                },
+                    new Game
+                {
+                    GameId = 11,
+                    Title = "Euro Truck Simulator 2",
+                    GameDescription = "Symulator jazdy ciężarówką od SCS Software",
+                    ImagePath = "eurotruck.jpg",
+                    Price = "27,00 zł",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[6]
+                },
+                    new Game
+                {
+                    GameId = 12,
+                    Title = "The Sims 4",
+                    GameDescription = "Cykl symulacji życia od EA Maxis / Maxis Software",
+                    ImagePath = "sims4.jpg",
+                    Price = "55,00 zł",
+                    SubGenre = _subGenreRepository.SubGenres.ToList()[6]
                 }
             };
 

@@ -30,8 +30,12 @@ namespace JaskiniaGier.Models.Repositories
                 {
                     GenreId = 3,
                     GenreName = "Strategiczne",
+                },
+                   new Genre
+                {
+                    GenreId = 4,
+                    GenreName = "Symulacyjne",
                 }
-
             };
 
     }
