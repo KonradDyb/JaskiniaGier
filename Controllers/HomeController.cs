@@ -14,18 +14,12 @@ namespace JaskiniaGier.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ISubGenreRepository _subGenreRepository;
-        private readonly IGenreRepository _genreRepository;
-        private readonly IGameRepository _gameRepository;
-        public string Dupa { get; set; }
 
-        public HomeController(ILogger<HomeController> logger, ISubGenreRepository subGenreRepository,
-            IGenreRepository genreRepository, IGameRepository gameRepository)
+ 
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _subGenreRepository = subGenreRepository;
-            _genreRepository = genreRepository;
-            _gameRepository = gameRepository;
+
         }
 
         public IActionResult Index()
@@ -38,16 +32,7 @@ namespace JaskiniaGier.Controllers
             return View();
         }
 
-        public IActionResult ListByGenre(string genre)
-        {
-            var allGames = _gameRepository.GetGamesByGenre(genre);
-            return View(allGames);
-        }
-        public IActionResult ListBySubGenre(string subGenre)
-        {
-            var allGames = _gameRepository.GetGamesBySubGenre(subGenre);
-            return View(allGames);
-        }
+      
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
