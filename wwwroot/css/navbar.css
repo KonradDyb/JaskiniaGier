@@ -6,7 +6,7 @@
 
 body {
     font-family: sans-serif;
-    background-image: url("background.png");
+    background-color: #fff;
 }
 
 .menu-bar {
@@ -31,7 +31,7 @@ body {
                 color: #fff;
             }
 
-            .active, .menu-bar ul li:hover {
+            .menu-bar ul li:hover {
                 background: rgb(0,100,75);
                 border-radius: 3px;
             }
