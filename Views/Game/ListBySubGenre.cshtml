@@ -11,7 +11,7 @@
             <div class="col-md-3">
                 <div class="product-grid">
                     <div class="product-image">
-                        <a href="#">
+                        <a asp-controller="Game" asp-action="ShowDetails" asp-route-productId=@game.GameId>
                             <img class="pic-1" src="~/images/@game.ImagePath">
                         </a>
                     </div>
