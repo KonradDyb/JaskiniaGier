@@ -14,5 +14,6 @@ namespace JaskiniaGier.Models.Entities
         public string ImagePath { get; set; }
         public string Price { get; set; }
         public SubGenre SubGenre { get; set; }
+        public int SubGenreId { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using JaskiniaGier.Models.Interfaces;
+﻿using JaskiniaGier.Models;
+using JaskiniaGier.Models.Entities;
+using JaskiniaGier.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -24,7 +26,7 @@ namespace JaskiniaGier.Controllers
         }
         public IActionResult ListBySubGenre(string subGenre)
         {
-            var allGames = _gameRepository.GetGamesBySubGenre(subGenre);
+            var allGames =  _gameRepository.GetGamesBySubGenre(subGenre);
             return View(allGames);
         }
     }
