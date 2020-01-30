@@ -12,5 +12,7 @@ namespace JaskiniaGier.Models.Interfaces
         IEnumerable<Game> AllGames { get; }
         IEnumerable<Game> GetGamesByGenre(string genre);
         IEnumerable<Game> GetGamesBySubGenre(string subGenre);
+        Game GetGameById(int gameId);
+
     }
 }

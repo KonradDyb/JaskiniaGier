@@ -30,6 +30,10 @@ namespace JaskiniaGier.Models.Repositories
             return _appDbContext.Games.Where(x => x.SubGenre.SubGenreName == subGenre).AsNoTracking();
         }
 
+        public Game GetGameById(int gameId)
+        {
+            return _appDbContext.Games.FirstOrDefault(x => x.GameId == gameId);
+        }
     }
 }
 
