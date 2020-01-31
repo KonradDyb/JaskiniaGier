@@ -33,9 +33,16 @@ namespace JaskiniaGier.Controllers
             var allGames = _gameRepository.GetGamesByGenre(genre);
             return View(allGames);
         }
+
         public IActionResult ListBySubGenre(string subGenre)
         {
             var allGames =  _gameRepository.GetGamesBySubGenre(subGenre);
+            return View(allGames);
+        }
+
+        public IActionResult ListAllGames()
+        {
+            var allGames = _gameRepository.AllGames;
             return View(allGames);
         }
     }
