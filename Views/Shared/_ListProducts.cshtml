@@ -21,8 +21,9 @@
                         <h3 class="title">
                             <a asp-controller="Game" asp-action="ShowDetails" asp-route-productId=@game.GameId>@game.Title</a>
                         </h3>
-                        <div class="price">@game.Price </div>
-                        <button class="btn btn-primary"><i class="fa fa-cart-plus"></i> KUP</button>
+                        <div class="price">@game.Price.ToString() zł</div>
+                            <a asp-controller="Cart" asp-action="AddToShoppingCart" asp-route-gameId="@game.GameId" class="btn btn-primary"><i class="fa fa-cart-plus"></i> KUP</a>
+                      
                     </div>
 
                 </div>
