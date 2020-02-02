@@ -30,7 +30,6 @@ namespace JaskiniaGier
             services.AddControllersWithViews();
             services.AddDbContext<AppDbContext>(op =>
             op.UseSqlServer(Configuration.GetConnectionString("JaskiniaGierConnection")));
-            services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped(x => Cart.GetCart(x));
             services.AddHttpContextAccessor();
             services.AddSession();

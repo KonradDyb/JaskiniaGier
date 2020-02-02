@@ -12,37 +12,35 @@ namespace JaskiniaGier.Controllers
 {
     public class GameController : Controller
     {
-        private readonly IGameRepository _gameRepository;
         private readonly AppDbContext _appDbContext;
 
-        public GameController(IGameRepository gameRepository, AppDbContext appDbContext)
+        public GameController(AppDbContext appDbContext)
         {
-            _gameRepository = gameRepository;
             _appDbContext = appDbContext;
         }
 
 
         public IActionResult ShowDetails(int productId)
         {
-            var game = _gameRepository.GetGameById(productId);
+            var game = _appDbContext.Games.FirstOrDefault(x => x.GameId == productId);
             return View(game);
         }
 
         public IActionResult ListByGenre(string genre)
         {
-            var allGames = _gameRepository.GetGamesByGenre(genre);
+            var allGames = _appDbContext.Games.Where(x => x.SubGenre.Genre.GenreName == genre);
             return View(allGames);
         }
 
         public IActionResult ListBySubGenre(string subGenre)
         {
-            var allGames =  _gameRepository.GetGamesBySubGenre(subGenre);
+            var allGames = _appDbContext.Games.Where(x => x.SubGenre.SubGenreName == subGenre);
             return View(allGames);
         }
 
         public IActionResult ListAllGames()
         {
-            var allGames = _gameRepository.AllGames;
+            var allGames = _appDbContext.Games;
             return View(allGames);
         }
     }
