@@ -31,6 +31,9 @@ namespace JaskiniaGier
             services.AddDbContext<AppDbContext>(op =>
             op.UseSqlServer(Configuration.GetConnectionString("JaskiniaGierConnection")));
             services.AddScoped<IGameRepository, GameRepository>();
+            services.AddScoped(x => Cart.GetCart(x));
+            services.AddHttpContextAccessor();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +51,7 @@ namespace JaskiniaGier
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

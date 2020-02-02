@@ -1,0 +1,40 @@
+﻿@model CartViewModel
+
+<h2 style="padding-top: 140px;">Koszyk zakupów</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Ilość</th>
+            <th>Gra</th>
+            <th class="text-right">Cena</th>
+            <th class="text-right">Suma Częściowa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.CartItems)
+        {
+            <tr>
+                <td class="text-center">@line.Amount</td>
+                <td class="text-left">@line.Game.Title</td>
+                <td class="text-right">@line.Game.Price.ToString().Trim('0') zł</td>
+                <td class="text-right">
+                    @((line.Amount * line.Game.Price).ToString().Trim('0')) zł
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right"><b>Suma Całkowita: </b></td>
+            <td class="text-right">
+                @Model.CartTotal.ToString().Trim('0') zł
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<div class="text-center">
+    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
+</div>
+
