@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace JaskiniaGier.Models.Entities
 {
-    public class Address
+    public class ShipAddress
     {
-        public int AddressId { get; set; }
+        public int ShipAddressId { get; set; }
         public List<Order> Orders { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

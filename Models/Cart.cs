@@ -92,7 +92,7 @@ namespace JaskiniaGier.Models
             return localAmount;
         }
 
-        public List<CartItem> GetShoppingCartItems()
+        public List<CartItem> GetCartItems()
         {
             return CartItems ??
                    (CartItems =
@@ -112,7 +112,7 @@ namespace JaskiniaGier.Models
             _appDbContext.SaveChanges();
         }
 
-        public decimal GetShoppingCartTotal()
+        public decimal GetCartTotal()
         {
             var total = _appDbContext.CartItems.Where(x => x.CartId == SessionCartId)
                 .Select(x => x.Game.Price * x.Amount).Sum();
