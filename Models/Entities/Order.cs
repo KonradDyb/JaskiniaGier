@@ -14,5 +14,6 @@ namespace JaskiniaGier.Models.Entities
         public ShipAddress Address { get; set; }
         public int ShipAddressId { get; set; }
         public int Amount { get; set; }
+        public decimal Price { get; set; }
     }
 }
