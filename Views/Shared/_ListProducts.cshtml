@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="~/css/productcards.css">
 <div class="container">
 
-    <div class="row" style="padding-top: 140px;">
+    <div class="row">
         @foreach (var game in Model)
         {
 
@@ -22,7 +22,7 @@
                             <a asp-controller="Game" asp-action="ShowDetails" asp-route-productId=@game.GameId>@game.Title</a>
                         </h3>
                         <div class="price">@game.Price.ToString() zł</div>
-                            <a asp-controller="Cart" asp-action="AddToShoppingCart" asp-route-gameId="@game.GameId" class="btn btn-primary"><i class="fa fa-cart-plus"></i> KUP</a>
+                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-gameId="@game.GameId" class="btn btn-primary"><i class="fa fa-cart-plus"></i> KUP</a>
                       
                     </div>
 

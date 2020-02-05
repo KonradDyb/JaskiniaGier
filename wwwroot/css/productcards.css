@@ -2,6 +2,10 @@ body {
     background-color: aliceblue;
 }
 
+.row {
+    padding-top: 140px;
+}
+
 .product-grid {
     font-family: 'Roboto Condensed', sans-serif;
     text-align: center;
