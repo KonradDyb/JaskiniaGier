@@ -12,32 +12,32 @@ namespace JaskiniaGier.Controllers
 {
     public class CartController : Controller
     {
-        private readonly IGameRepository _gameRepository;
+        private readonly AppDbContext _appDbContext;
         private readonly Cart _cart;
 
-        public CartController(IGameRepository gameRepository, Cart cart)
+        public CartController(AppDbContext appDbContext, Cart cart)
         {
-            _gameRepository = gameRepository;
+            _appDbContext = appDbContext;
             _cart = cart;
         }
 
         public ViewResult Index()
         {
-            var items = _cart.GetShoppingCartItems();
+            var items = _cart.GetCartItems();
             _cart.CartItems = items;
 
             var cartViewModel = new CartViewModel
             {
                 Cart = _cart,
-                CartTotal = _cart.GetShoppingCartTotal()
+                CartTotal = _cart.GetCartTotal()
             };
 
             return View(cartViewModel);
         }
 
-        public RedirectToActionResult AddToShoppingCart(int gameId)
+        public RedirectToActionResult AddToCart(int gameId)
         {
-            var selectedGame = _gameRepository.AllGames.FirstOrDefault(x => x.GameId == gameId);
+            var selectedGame = _appDbContext.Games.FirstOrDefault(x => x.GameId == gameId);
 
             if(selectedGame != null)
             {
@@ -46,9 +46,9 @@ namespace JaskiniaGier.Controllers
             return RedirectToAction("Index");
         }
 
-        public RedirectToActionResult RemoveFromShoppingCart(int gameId)
+        public RedirectToActionResult RemoveFromCart(int gameId)
         {
-            var selectedGame = _gameRepository.AllGames.FirstOrDefault(x => x.GameId == gameId);
+            var selectedGame = _appDbContext.Games.FirstOrDefault(x => x.GameId == gameId);
 
             if (selectedGame != null)
             {
