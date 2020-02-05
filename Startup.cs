@@ -31,6 +31,7 @@ namespace JaskiniaGier
             services.AddDbContext<AppDbContext>(op =>
             op.UseSqlServer(Configuration.GetConnectionString("JaskiniaGierConnection")));
             services.AddScoped(x => Cart.GetCart(x));
+            services.AddScoped<IShipAddressRepository, ShipAddressRepository>();
             services.AddHttpContextAccessor();
             services.AddSession();
         }
