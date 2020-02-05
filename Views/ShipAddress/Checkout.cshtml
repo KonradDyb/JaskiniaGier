@@ -1,0 +1,63 @@
+﻿@model ShipAddress
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+
+
+            <form asp-action="Checkout" method="post" style="padding-top: 70px;">
+                <h4>Dane do wysyłki:</h4>
+                <br />
+
+                <div class="form-group">
+                    <label for="LastName">Nazwisko: </label>
+                    <input asp-for="LastName" class="form-control" placeholder="Wpisz nazwisko" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="FirstName">Imię: </label>
+                    <input asp-for="FirstName" class="form-control" placeholder="Wpisz imię" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="Address1">Ulica: </label>
+                    <input asp-for="Address1" class="form-control" placeholder="Wpisz ulicę" />
+                    <span asp-validation-for="Address1" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="Address2">Nr domu/lokalu: </label>
+                    <input asp-for="Address2" class="form-control" placeholder="Wpisz nr domu lub lokalu" />
+                    <span asp-validation-for="Address2" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="City">Miejscowość: </label>
+                    <input asp-for="City" class="form-control" placeholder="Wpisz nazwę miejscowości" />
+                </div>
+
+                <div class="form-group">
+                    <label for="ZipCode">Kod pocztowy: </label>
+                    <input asp-for="ZipCode" class="form-control" placeholder="Wpisz nr kodu pocztowego" />
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="PhoneNumber">Nr telefonu: </label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="Wpisz nr telefonu" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    
+                </div>
+
+                <div class="form-group">
+                    <div></div>
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-primary" value="Complete order" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -30,11 +30,20 @@ namespace JaskiniaGier.Models.Repositories
 
             foreach (var product in cartProducts)
             {
-               
+                var orderInfo = new Order
+                {
+                    Amount = product.Amount,
+                    GameId = product.Game.GameId,
+                    Price = product.Game.Price
+                };
 
 
-                //shipAddress.Orders.Add();
+                shipAddress.Orders.Add(orderInfo);
             }
+
+            _appDbContext.ShipAddresses.Add(shipAddress);
+
+            _appDbContext.SaveChanges();
 
         }
 
