@@ -15,6 +15,14 @@ body {
     margin-top: 10%;
 }
 
+input {
+    border: 1px solid #ccc;
+    font-weight: bold;
+    height: 33px;
+    text-align: center;
+    width: 30px;
+}
+
     .product-grid:before {
         height: 100%;
         width: 100%;

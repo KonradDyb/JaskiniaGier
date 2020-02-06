@@ -1,0 +1,12 @@
+﻿body
+{
+    background-image: url("background.jpg");
+    
+
+}
+
+.index-page{
+    padding-top: 640px;
+    text-align: center;
+    color: white;
+}
