@@ -1,10 +1,10 @@
 ﻿@model ShipAddress
-<div class="container mt-2">
+<div class="container mt-2"  style="padding-top: 140px;">
     <div class="row">
         <div class="col-md-4 offset-md-4">
 
 
-            <form asp-action="Checkout" method="post" style="padding-top: 70px;">
+            <form asp-action="Checkout" method="post" >
                 <h4>Dane do wysyłki:</h4>
                 <br />
 
@@ -35,6 +35,7 @@
                 <div class="form-group">
                     <label for="City">Miejscowość: </label>
                     <input asp-for="City" class="form-control" placeholder="Wpisz nazwę miejscowości" />
+                    <span asp-validation-for="City" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
