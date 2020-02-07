@@ -1,6 +1,7 @@
 ﻿using JaskiniaGier.Models;
 using JaskiniaGier.Models.Entities;
 using JaskiniaGier.Models.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace JaskiniaGier.Controllers
 {
+    [Authorize]
     public class ShipAddressController : Controller
     {
         private readonly IShipAddressRepository _shipAddressRepository;
