@@ -15,8 +15,10 @@
     <div class="menu-bar">
         <ul>
             <li><i class="fa fa-home"></i><a asp-controller="Home" asp-action="Index">Home</a></li>
+
             <li>
                 <a asp-controller="Game" asp-action="ListAllGames"><i class="fa fa-gamepad"></i>Gry</a>
+
                 <div class="sub-menu-1">
                     <ul>
                         <li class="hover-me">
@@ -44,7 +46,8 @@
                     </ul>
                 </div>
             </li>
-            <li>
+            <partial name="_LoginPartial" />
+            @*<li>
                 <a href="#"><i class="fa fa-user"></i>About Us</a>
                 <div class="sub-menu-1">
                     <ul>
@@ -53,10 +56,10 @@
                         <li><a href="#">Team</a></li>
                     </ul>
                 </div>
-            </li>
+            </li>*@
         </ul>
     </div>
-    <div class="container">
+    <div class="container" style="padding-top: 140px;">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
