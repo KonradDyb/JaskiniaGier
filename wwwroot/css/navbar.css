@@ -32,7 +32,7 @@ body {
             }
 
             .menu-bar ul li:hover {
-                background: rgb(0,100,75);
+                background: rgb(125,6,22);
                 border-radius: 3px;
             }
 
@@ -71,7 +71,7 @@ body {
             }
 
             .menu-bar ul li:hover .sub-menu-1 ul li a:hover {
-                color: #b2ff00;
+                color: rgb(255,0,0);
             }
 
 .fa-angle-right {

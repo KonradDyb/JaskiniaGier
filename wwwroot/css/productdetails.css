@@ -1,4 +1,7 @@
-﻿.container {
+﻿body {
+    background-color: #E0E0E0;
+}
+.container {
     margin-top: 180px;
 }
 
@@ -10,8 +13,8 @@
     font-weight: bold;
 }
 
-.col-md-7 h2 {
-    color: #555;
+.col-md-7 {
+    color: #000000;
 }
 
 .stars {
@@ -43,4 +46,30 @@ input {
 .carousel-inner img {
     width: 440px;
     height: 461px;
+}
+
+.form-group label {
+    text-align: right;
+    clear: both;
+    float: left;
+    padding-top: 5px;
+
+
+}
+
+.form-group input {
+    border: 1px solid #ccc;
+    font-weight: bold;
+    height: 33px;
+    text-align: left;
+    width: 66px;
+    margin-left: 45px;
+
+
+}
+
+.form-group .btn {
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 5px;
 }

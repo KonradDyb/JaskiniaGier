@@ -1,5 +1,5 @@
 body {
-    background-color: aliceblue;
+    background-color: #E0E0E0;
 }
 
 .row {
@@ -21,6 +21,10 @@ body {
     float: left;
     margin-left: 75px;
     padding-top: 5px;
+}
+
+.product-content{
+    background-color: darkblue;
 }
 
 .form-group input {
