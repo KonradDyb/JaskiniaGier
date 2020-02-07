@@ -9,6 +9,7 @@ namespace JaskiniaGier.ViewModels
 {
     public class GameViewModel
     {
+        public Game Game { get; set; }
         public IEnumerable<Game> Games { get; set; }
         public int Amount { get; set; }
     }

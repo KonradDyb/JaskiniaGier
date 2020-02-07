@@ -1,4 +1,4 @@
-﻿@model Game
+﻿@model GameViewModel
 
 <link rel="stylesheet" href="~/css/productdetails.css">
 
@@ -9,16 +9,16 @@
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="~/images/carousel/@Model.ImagePath.Insert(0, "carousel1_")" alt="...">
+                        <img src="~/images/carousel/@Model.Game.ImagePath.Insert(0, "carousel1_")" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="~/images/carousel/@Model.ImagePath.Insert(0, "carousel2_")"  alt="...">
+                        <img src="~/images/carousel/@Model.Game.ImagePath.Insert(0, "carousel2_")"  alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="~/images/carousel/@Model.ImagePath.Insert(0, "carousel3_")" alt="...">
+                        <img src="~/images/carousel/@Model.Game.ImagePath.Insert(0, "carousel3_")" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="~/images/@Model.ImagePath" alt="...">
+                        <img src="~/images/@Model.Game.ImagePath" alt="...">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -33,22 +33,23 @@
         </div>
         <div class="col-md-7">
             <pc class="newarrival text-center">BESTSELLER </pc>
-            <h2>@Model.Title</h2>
-            <p class="price">@Model.Price.ToString() zł</p>
-            <p><b>Opis Gry: </b>@Model.GameDescription</p>
+            <h2>@Model.Game.Title</h2>
+            <p class="price">@Model.Game.Price.ToString() zł</p>
+            <p><b>Opis Gry: </b>@Model.Game.GameDescription</p>
             <p><b>Źródło opisu:</b> <a href="https://www.gry-online.pl/">www.gryonline.pl</a></p>
             <p><b>Platforma: </b>PC</p>
-            <label>Ilość: </label>
-            <input type="text" value="1">
-            <a asp-controller="Cart" asp-action="AddToCart" asp-route-gameId="@Model.GameId" class="btn btn-primary">
-                <i class="fa fa-cart-plus"></i> KUP</a>
+            <form asp-controller="Cart" asp-action="AddToCart" asp-route-gameId="@Model.Game.GameId" method="post">
+                <div class="form-group">
+                    <label asp-for="Amount">Ilość: </label>
+                    <input asp-for="Amount" class="form-control" value="1" type="number" />
+                    <span asp-validation-for="Amount" class="text-danger"></span>
+                    <button type="submit" class="btn btn-primary" value="KUP"> <i class="fa fa-cart-plus"> KUP</i></button>
+                </div>
 
 
+                    
 
-
-
-
-
+            </form>
         </div>
     </div>
 </div>

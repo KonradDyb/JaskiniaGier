@@ -24,7 +24,12 @@ namespace JaskiniaGier.Controllers
         public IActionResult ShowDetails(int productId)
         {
             var game = _appDbContext.Games.FirstOrDefault(x => x.GameId == productId);
-            return View(game);
+            var gameView = new GameViewModel
+            {
+                Game = game
+            };
+
+            return View(gameView);
         }
 
         public IActionResult ListByGenre(string genre)
