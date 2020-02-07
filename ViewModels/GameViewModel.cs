@@ -10,5 +10,6 @@ namespace JaskiniaGier.ViewModels
     public class GameViewModel
     {
         public IEnumerable<Game> Games { get; set; }
+        public int Amount { get; set; }
     }
 }

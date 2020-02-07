@@ -1,6 +1,7 @@
 ﻿using JaskiniaGier.Models;
 using JaskiniaGier.Models.Entities;
 using JaskiniaGier.Models.Interfaces;
+using JaskiniaGier.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,19 +30,31 @@ namespace JaskiniaGier.Controllers
         public IActionResult ListByGenre(string genre)
         {
             var allGames = _appDbContext.Games.Where(x => x.SubGenre.Genre.GenreName == genre);
-            return View(allGames);
+            var gameView = new GameViewModel
+            {
+                Games = allGames
+            };
+            return View(gameView);
         }
 
         public IActionResult ListBySubGenre(string subGenre)
         {
             var allGames = _appDbContext.Games.Where(x => x.SubGenre.SubGenreName == subGenre);
-            return View(allGames);
+            var gameView = new GameViewModel
+            {
+                Games = allGames
+            };
+            return View(gameView);
         }
 
         public IActionResult ListAllGames()
         {
             var allGames = _appDbContext.Games;
-            return View(allGames);
+            var gameView = new GameViewModel
+            {
+                Games = allGames
+            };
+            return View(gameView);
         }
     }
 }

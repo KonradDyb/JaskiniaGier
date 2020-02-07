@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Game>
+﻿@model GameViewModel
 
 <link rel="stylesheet" href="~/css/productcards.css">
 <div class="container">
 
     <div class="row">
-        @foreach (var game in Model)
+        @foreach (var game in Model.Games)
         {
 
 
@@ -21,9 +21,22 @@
                         <h3 class="title">
                             <a asp-controller="Game" asp-action="ShowDetails" asp-route-productId=@game.GameId>@game.Title</a>
                         </h3>
+
                         <div class="price">@game.Price.ToString() zł</div>
-                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-gameId="@game.GameId" class="btn btn-primary"><i class="fa fa-cart-plus"></i> KUP</a>
-                      
+                        <form asp-controller="Cart" asp-action="AddToCart" asp-route-gameId="@game.GameId" method="post">
+                            <div class="text-center">
+                              
+                                <button type="submit" class="btn btn-primary" value="KUP"> <i class="fa fa-cart-plus"> KUP</i></button>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Amount">Ilość: </label>
+                                <input asp-for="Amount" class="form-control" value="1" type="number"/>
+                                <span asp-validation-for="Amount" class="text-danger"></span>
+                            </div>
+
+
+                        </form>
+
                     </div>
 
                 </div>

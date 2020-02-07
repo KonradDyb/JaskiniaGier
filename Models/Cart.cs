@@ -54,7 +54,7 @@ namespace JaskiniaGier.Models
                 {
                     CartId = SessionCartId,
                     Game = game,
-                    Amount = 1
+                    Amount = amount
                 };
 
                 _appDbContext.CartItems.Add(shoppingCartItem);

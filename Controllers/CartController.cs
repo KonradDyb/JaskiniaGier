@@ -33,15 +33,17 @@ namespace JaskiniaGier.Controllers
             };
 
             return View(cartViewModel);
-        }
 
-        public RedirectToActionResult AddToCart(int gameId)
+        }
+        [HttpPost]
+        public RedirectToActionResult AddToCart(GameViewModel gameView, int gameId)
         {
+            
             var selectedGame = _appDbContext.Games.FirstOrDefault(x => x.GameId == gameId);
 
             if(selectedGame != null)
             {
-                _cart.AddToCart(selectedGame, 1);
+                _cart.AddToCart(selectedGame, gameView.Amount);
             }
             return RedirectToAction("Index");
         }
