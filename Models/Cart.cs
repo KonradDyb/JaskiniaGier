@@ -61,7 +61,7 @@ namespace JaskiniaGier.Models
             }
             else
             {
-                shoppingCartItem.Amount++;
+                shoppingCartItem.Amount += amount ;
             }
             _appDbContext.SaveChanges();
         }
