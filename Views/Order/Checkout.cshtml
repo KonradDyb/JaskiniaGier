@@ -1,5 +1,5 @@
-﻿@model ShipAddress
-<div class="container mt-2"  style="padding-top: 70px;">
+﻿@model OrderDetails
+<div class="container mt-2">
     <div class="row">
         <div class="col-md-4 offset-md-4">
 
@@ -55,8 +55,10 @@
                 <div class="form-group">
                     <div></div>
                     <div class="text-center">
+                        <a class="btn btn-primary" asp-controller="Game" asp-action="ListAllGames"><i class="fa fa-reply"></i> Wróć do zakupów</a>
                         <input type="submit" class="btn btn-primary" value="Zamów" />
                     </div>
+
                 </div>
             </form>
         </div>
