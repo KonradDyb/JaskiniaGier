@@ -36,8 +36,18 @@ namespace JaskiniaGier.Controllers
         {
             var userId = _userManager.GetUserId(User);
             var getOrder = _orderRepository.GetOrder(userId);
-            
-            return View(getOrder);
+
+            if (getOrder.IsAny())
+            {
+                return View(getOrder);
+            }
+
+            return RedirectToAction("EmptyOrder");
+        }
+
+        public IActionResult EmptyOrder()
+        {
+            return View();
         }
 
         public IActionResult OrderDetails(int orderId)
@@ -45,6 +55,11 @@ namespace JaskiniaGier.Controllers
             var order = _orderRepository.GetOrderById(orderId);
 
             return View(order);
+        }
+
+        public IActionResult EmptyCart()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -55,7 +70,7 @@ namespace JaskiniaGier.Controllers
 
             if (_cart.CartItems.Count == 0)
             {
-                ModelState.AddModelError("", "Twoj koszyk jest pusty. Najpierw dodaj produkt.");
+                return RedirectToAction("EmptyCart");
             }
 
             if (ModelState.IsValid)
