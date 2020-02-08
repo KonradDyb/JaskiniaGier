@@ -35,31 +35,33 @@ namespace JaskiniaGier.Controllers
         public IActionResult ListByGenre(string genre)
         {
             var allGames = _appDbContext.Games.Where(x => x.SubGenre.Genre.GenreName == genre);
-            var gameView = new GameViewModel
-            {
-                Games = allGames
-            };
+            var gameView = GetGameViewModel(allGames);
+
             return View(gameView);
         }
 
         public IActionResult ListBySubGenre(string subGenre)
         {
             var allGames = _appDbContext.Games.Where(x => x.SubGenre.SubGenreName == subGenre);
-            var gameView = new GameViewModel
-            {
-                Games = allGames
-            };
+            var gameView = GetGameViewModel(allGames);
+
             return View(gameView);
         }
 
         public IActionResult ListAllGames()
         {
             var allGames = _appDbContext.Games;
-            var gameView = new GameViewModel
+            var gameView = GetGameViewModel(allGames);
+
+            return View(gameView);
+        }
+
+        private static GameViewModel GetGameViewModel(IQueryable<Game> allGames)
+        {
+            return new GameViewModel
             {
                 Games = allGames
             };
-            return View(gameView);
         }
     }
 }

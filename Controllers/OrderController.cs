@@ -13,46 +13,42 @@ using Microsoft.AspNetCore.Identity;
 namespace JaskiniaGier.Controllers
 {
     [Authorize]
-    public class ShipAddressController : Controller
+    public class OrderController : Controller
     {
-        private readonly IShipAddressRepository _shipAddressRepository;
+        private readonly IOrderRepository _orderRepository;
         private readonly Cart _cart;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public ShipAddressController(IShipAddressRepository shipAddressRepository, Cart cart, 
+        public OrderController(IOrderRepository orderRepository, Cart cart, 
             UserManager<IdentityUser> userManager)
         {
-            _shipAddressRepository = shipAddressRepository;
+            _orderRepository = orderRepository;
             _cart = cart;
             _userManager = userManager;
         }
 
         public IActionResult Checkout()
         {
-            return View();
-            
+            return View();   
         }
 
         public IActionResult GetOrders()
         {
             var userId = _userManager.GetUserId(User);
-            var getOrder = _shipAddressRepository.GetOrder(userId);
+            var getOrder = _orderRepository.GetOrder(userId);
             
-            
-
             return View(getOrder);
-            
         }
 
         public IActionResult OrderDetails(int orderId)
         {
-            var order = _shipAddressRepository.GetOrderById(orderId);
+            var order = _orderRepository.GetOrderById(orderId);
 
             return View(order);
         }
 
         [HttpPost]
-        public IActionResult Checkout(ShipAddress shipAddress)
+        public IActionResult Checkout(OrderDetails orderDetails)
         {
             var products = _cart.GetCartItems();
             _cart.CartItems = products;
@@ -64,13 +60,13 @@ namespace JaskiniaGier.Controllers
 
             if (ModelState.IsValid)
             {
-                shipAddress.UserId = _userManager.GetUserId(User);
-                _shipAddressRepository.CreateShipDetails(shipAddress);
+                orderDetails.UserId = _userManager.GetUserId(User);
+                _orderRepository.CreateShipDetails(orderDetails);
                 _cart.ClearCart();
                 return RedirectToAction("CheckoutComplete");
             }
 
-            return View(shipAddress);
+            return View(orderDetails);
         }
 
         public IActionResult CheckoutComplete()

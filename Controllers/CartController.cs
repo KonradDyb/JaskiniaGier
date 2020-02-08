@@ -1,4 +1,5 @@
 ﻿using JaskiniaGier.Models;
+using JaskiniaGier.Models.Entities;
 using JaskiniaGier.Models.Interfaces;
 using JaskiniaGier.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -35,29 +36,36 @@ namespace JaskiniaGier.Controllers
             return View(cartViewModel);
 
         }
+
         [HttpPost]
         public RedirectToActionResult AddToCart(GameViewModel gameView, int gameId)
         {
-            
-            var selectedGame = _appDbContext.Games.FirstOrDefault(x => x.GameId == gameId);
+
+            var selectedGame = GetGameById(gameId);
 
             if(selectedGame != null)
             {
                 _cart.AddToCart(selectedGame, gameView.Amount);
             }
+
             return RedirectToAction("Index");
         }
 
         public RedirectToActionResult RemoveFromCart(int gameId)
         {
-            var selectedGame = _appDbContext.Games.FirstOrDefault(x => x.GameId == gameId);
+            var selectedGame = GetGameById(gameId);
 
             if (selectedGame != null)
             {
                 _cart.RemoveFromCart(selectedGame);
             }
+
             return RedirectToAction("Index");
         }
-        
+
+        private Game GetGameById(int gameId)
+        {
+            return _appDbContext.Games.FirstOrDefault(x => x.GameId == gameId);
+        }
     }
 }
