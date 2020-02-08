@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,9 +52,13 @@ namespace JaskiniaGier.Models.Entities
         public string PhoneNumber { get; set; }
 
         [BindNever]
+        [NotMapped]
         public decimal OrderTotal { get; set; }
 
         [BindNever]
         public DateTime OrderPlaced { get; set; }
+
+        public string UserId { get; set; }
+        
     }
 }
