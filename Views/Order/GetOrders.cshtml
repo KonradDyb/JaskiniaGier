@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Order>
+
+<h2>Twoje zamówienia</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Nr. zamówienia:</th>
+            <th class="text-center">Data złożenia:</th>
+            <th class="text-center">Wartość:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center"><a asp-controller="Order" asp-action="OrderDetails" 
+                                           asp-route-orderId="@item.OrderId" class="btn btn-primary">@item.OrderId</a></td>
+                <td class="text-center">@item.OrderDetails.OrderPlaced</td>
+                <td class="text-center">@(item.Price * item.Amount)</td>
+            </tr>
+        }
+    </tbody>
+</table>
