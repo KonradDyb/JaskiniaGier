@@ -1,4 +1,5 @@
 ﻿using JaskiniaGier.Models.Entities;
+using JaskiniaGier.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace JaskiniaGier.Models.Repositories
     public interface IShipAddressRepository
     {
         void CreateShipDetails(ShipAddress shipAddress);
+        IEnumerable<Order> GetOrder(string userId);
+        IEnumerable<Order> GetOrderById(int orderId);
     }
 }
