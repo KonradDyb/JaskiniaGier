@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JaskiniaGier.Migrations
 {
-    public partial class AddIdentity : Migration
+    public partial class IdentityUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,6 +69,17 @@ namespace JaskiniaGier.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "IdentityUserId",
+                table: "ShipAddresses",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<string>(
+                name: "UserId",
+                table: "ShipAddresses",
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -155,8 +166,8 @@ namespace JaskiniaGier.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(nullable: false),
-                    ProviderKey = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -200,8 +211,8 @@ namespace JaskiniaGier.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -214,6 +225,11 @@ namespace JaskiniaGier.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShipAddresses_UserId",
+                table: "ShipAddresses",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -253,10 +269,22 @@ namespace JaskiniaGier.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_ShipAddresses_AspNetUsers_UserId",
+                table: "ShipAddresses",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_ShipAddresses_AspNetUsers_UserId",
+                table: "ShipAddresses");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -277,6 +305,18 @@ namespace JaskiniaGier.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropIndex(
+                name: "IX_ShipAddresses_UserId",
+                table: "ShipAddresses");
+
+            migrationBuilder.DropColumn(
+                name: "IdentityUserId",
+                table: "ShipAddresses");
+
+            migrationBuilder.DropColumn(
+                name: "UserId",
+                table: "ShipAddresses");
 
             migrationBuilder.AlterColumn<string>(
                 name: "ZipCode",
