@@ -67,5 +67,11 @@ namespace JaskiniaGier.Controllers
         {
             return _appDbContext.Games.FirstOrDefault(x => x.GameId == gameId);
         }
+
+        public RedirectToActionResult ClearCart()
+        {
+            _cart.ClearCart();
+            return RedirectToAction("Index");
+        }
     }
 }
