@@ -66,30 +66,24 @@ namespace JaskiniaGier.Models
             _appDbContext.SaveChanges();
         }
 
-        public int RemoveFromCart(Game game)
+        public void RemoveFromCart(Game game)
         {
             var shoppingCartItem =
                     _appDbContext.CartItems.SingleOrDefault(
                         x => x.Game.GameId == game.GameId && x.CartId == SessionCartId);
 
-            var localAmount = 0;
 
             if (shoppingCartItem != null)
             {
-                if (shoppingCartItem.Amount > 1)
-                {
-                    shoppingCartItem.Amount--;
-                    localAmount = shoppingCartItem.Amount;
-                }
-                else
+                if (shoppingCartItem.Amount >= 1)
                 {
                     _appDbContext.CartItems.Remove(shoppingCartItem);
                 }
+
             }
 
             _appDbContext.SaveChanges();
 
-            return localAmount;
         }
 
         public List<CartItem> GetCartItems()
