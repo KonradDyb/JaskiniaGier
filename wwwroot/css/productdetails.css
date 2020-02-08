@@ -3,6 +3,7 @@
 }
 
 
+
 .newarrival {
     background: green;
     width: 50px;
@@ -15,9 +16,7 @@
     color: #000000;
 }
 
-.stars {
-    height: 15px;
-}
+
 
 .price {
     color: #FE980F;

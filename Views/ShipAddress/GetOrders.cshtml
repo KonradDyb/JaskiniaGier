@@ -13,9 +13,9 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td class="text-center"><a asp-controller="ShipAddress" asp-action="OrderDetails" 
+                <td class="text-center"><a asp-controller="Order" asp-action="OrderDetails" 
                                            asp-route-orderId="@item.OrderId" class="btn btn-primary">@item.OrderId</a></td>
-                <td class="text-center">@item.Address.OrderPlaced</td>
+                <td class="text-center">@item.OrderDetails.OrderPlaced</td>
                 <td class="text-center">@(item.Price * item.Amount)</td>
             </tr>
         }

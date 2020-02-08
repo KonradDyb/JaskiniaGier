@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace JaskiniaGier.Models.Entities
 {
-    public class ShipAddress
+    public class OrderDetails
     {
         [BindNever]
-        public int ShipAddressId { get; set; }
+        public int OrderDetailsId { get; set; }
         public List<Order> Orders { get; set; }
         
         [Required(ErrorMessage = "Wpisz swoje imię!")]

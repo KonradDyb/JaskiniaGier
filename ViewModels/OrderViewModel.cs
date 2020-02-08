@@ -9,7 +9,7 @@ namespace JaskiniaGier.ViewModels
 {
     public class OrderViewModel
     {
-        public IEnumerable<ShipAddress> ShipAddresses { get; set; }
+        public IEnumerable<OrderDetails> OrderDetails { get; set; }
         public IEnumerable<Order> Orders { get; set; }
     }
 }

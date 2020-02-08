@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace JaskiniaGier.Models.Repositories
 {
-    public interface IShipAddressRepository
+    public interface IOrderRepository
     {
-        void CreateShipDetails(ShipAddress shipAddress);
+        void CreateShipDetails(OrderDetails shipAddress);
         IEnumerable<Order> GetOrder(string userId);
         IEnumerable<Order> GetOrderById(int orderId);
     }

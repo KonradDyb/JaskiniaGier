@@ -11,8 +11,8 @@ namespace JaskiniaGier.Models.Entities
         public int OrderId { get; set; }
         public Game Game { get; set; }
         public int GameId { get; set; }
-        public ShipAddress Address { get; set; }
-        public int ShipAddressId { get; set; }
+        public OrderDetails OrderDetails { get; set; }
+        public int OrderDetailsId { get; set; }
         public int Amount { get; set; }
         public decimal Price { get; set; }
     }

@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace JaskiniaGier.Models.Repositories
 {
-    public class ShipAddressRepository : IShipAddressRepository
+    public class OrderRepository : IOrderRepository
     {
         private readonly AppDbContext _appDbContext;
         private readonly Cart _cart;
 
-        public ShipAddressRepository(AppDbContext appDbContext, Cart cart)
+        public OrderRepository(AppDbContext appDbContext, Cart cart)
         {
             _appDbContext = appDbContext;
             _cart = cart;
         }
 
-        public void CreateShipDetails(ShipAddress shipAddress )
+        public void CreateShipDetails(OrderDetails shipAddress )
         {
 
             shipAddress.OrderPlaced = DateTime.Now;
@@ -43,7 +43,7 @@ namespace JaskiniaGier.Models.Repositories
                 shipAddress.Orders.Add(orderInfo);
             }
 
-            _appDbContext.ShipAddresses.Add(shipAddress);
+            _appDbContext.OrderDetails.Add(shipAddress);
 
             _appDbContext.SaveChanges();
 
@@ -51,8 +51,8 @@ namespace JaskiniaGier.Models.Repositories
 
         public IEnumerable<Order> GetOrder(string userId)
         {
-            var order = _appDbContext.Orders.Where(x => x.Address.UserId == userId)
-                                            .Include(x => x.Address)
+            var order = _appDbContext.Orders.Where(x => x.OrderDetails.UserId == userId)
+                                            .Include(x => x.OrderDetails)
                                             .Include(x => x.Game);
 
             return order;

@@ -22,7 +22,7 @@ namespace JaskiniaGier.Models
         public DbSet<SubGenre> SubGenres { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<ShipAddress> ShipAddresses  { get; set; }
+        public DbSet<OrderDetails> OrderDetails  { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

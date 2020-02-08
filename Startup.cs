@@ -33,7 +33,7 @@ namespace JaskiniaGier
             op.UseSqlServer(Configuration.GetConnectionString("JaskiniaGierConnection")));
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
             services.AddScoped(x => Cart.GetCart(x));
-            services.AddScoped<IShipAddressRepository, ShipAddressRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddHttpContextAccessor();
             services.AddSession();
             services.AddRazorPages();
