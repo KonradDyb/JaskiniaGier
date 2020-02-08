@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Order>
+
+<h2>Szczegóły Twojego zamówienia: </h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Nazwa gry:</th>
+            <th class="text-center">Ilość:</th>
+            <th class="text-center">Cena:</th>
+            <th class="text-center">Wartość:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td class="text-center">@item.Game.Title</td>
+                <td class="text-center">@item.Amount</td>
+                <td class="text-center">@item.Game.Price</td>
+                <td class="text-center">@(item.Price * item.Amount)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>
