@@ -34,7 +34,7 @@ namespace JaskiniaGier.Controllers
 
         public IActionResult ListByGenre(string genre)
         {
-            var allGames = _appDbContext.Games.Where(x => x.SubGenre.Genre.GenreName == genre);
+            var allGames = GetGamesBy(x => x.SubGenre.Genre.GenreName, genre);
             var gameView = GetGameViewModel(allGames);
 
             return View(gameView);
@@ -42,7 +42,7 @@ namespace JaskiniaGier.Controllers
 
         public IActionResult ListBySubGenre(string subGenre)
         {
-            var allGames = _appDbContext.Games.Where(x => x.SubGenre.SubGenreName == subGenre);
+            var allGames = GetGamesBy(x => x.SubGenre.SubGenreName, subGenre);
             var gameView = GetGameViewModel(allGames);
 
             return View(gameView);
@@ -62,6 +62,11 @@ namespace JaskiniaGier.Controllers
             {
                 Games = allGames
             };
+        }
+
+        public IQueryable<Game> GetGamesBy(Func<Game, string> propertySelector, string genre)
+        {
+            return _appDbContext.Games.Where(x => propertySelector(x) == genre);
         }
     }
 }
