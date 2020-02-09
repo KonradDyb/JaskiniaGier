@@ -51,7 +51,7 @@ namespace JaskiniaGier.Controllers
             return RedirectToAction("Index");
         }
 
-        public RedirectToActionResult RemoveFromCart(int gameId)
+        public RedirectToActionResult RemoveItemFromCart(int gameId)
         {
             var selectedGame = GetGameById(gameId);
 
