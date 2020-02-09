@@ -15,17 +15,19 @@
     </li>
     <li class="nav-item">
         <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button class="nav-button" id="logout" type="submit">Wyloguj</button>
+            <i class="fas fa-sign-out-alt"></i><button class="nav-button" id="logout" type="submit"> Wyloguj</button>
         </form>
     </li>
 }
 else
 {
     <li class="nav-item">
-        <a id="register" asp-area="Identity" asp-page="/Account/Register">Rejestracja</a>
+        <i class="fas fa-user-plus"></i><a id="register" asp-area="Identity" asp-page="/Account/Register"> Rejestracja</a>
     </li>
     <li class="nav-item">
-        <a id="login" asp-area="Identity" asp-page="/Account/Login">Logowanie</a>
+        <i class="fas fa-sign-in-alt"></i><a id="login" asp-area="Identity" asp-page="/Account/Login"> Logowanie</a>
     </li>
 }
 
+
+<script src="https://kit.fontawesome.com/b3ae133f06.js" crossorigin="anonymous"></script>

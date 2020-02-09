@@ -21,7 +21,7 @@
                 <td class="text-right">
                     @((line.Amount * line.Game.Price).ToString().Trim('0')) zł
                 </td>
-                <td> <div class="text-center"><a class="btn btn-primary" asp-controller="Cart" asp-action="RemoveFromCart" asp-route-gameId="@line.Game.GameId"><i class="fa fa-trash"></i> </a></div></td>
+                <td> <div class="text-center"><a class="btn btn-primary" asp-controller="Cart" asp-action="RemoveItemFromCart" asp-route-gameId="@line.Game.GameId"><i class="fa fa-trash"></i> </a></div></td>
 
             </tr>
         }
