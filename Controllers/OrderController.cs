@@ -37,12 +37,12 @@ namespace JaskiniaGier.Controllers
             var userId = _userManager.GetUserId(User);
             var getOrder = _orderRepository.GetOrder(userId);
 
-            if (getOrder.IsAny())
-            {
+           
+            
                 return View(getOrder);
-            }
+            
 
-            return RedirectToAction("EmptyOrder");
+            
         }
 
         public IActionResult EmptyOrder()
@@ -50,9 +50,10 @@ namespace JaskiniaGier.Controllers
             return View();
         }
 
-        public IActionResult OrderDetails(int orderId)
+        public IActionResult OrderDetails(string orderPlaced)
         {
-            var order = _orderRepository.GetOrderById(orderId);
+            var userId = _userManager.GetUserId(User);
+            var order = _orderRepository.GetOrderById(userId, orderPlaced);
 
             return View(order);
         }
