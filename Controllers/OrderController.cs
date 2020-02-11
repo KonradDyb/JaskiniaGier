@@ -37,12 +37,13 @@ namespace JaskiniaGier.Controllers
             var userId = _userManager.GetUserId(User);
             var getOrder = _orderRepository.GetOrder(userId);
 
-           
-            
+            if (getOrder.IsAny())
+            {
                 return View(getOrder);
-            
+            }
 
-            
+
+            return RedirectToAction("EmptyOrder");  
         }
 
         public IActionResult EmptyOrder()
