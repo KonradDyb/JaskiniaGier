@@ -23,7 +23,7 @@ namespace JaskiniaGier.Models.Repositories
         public void CreateShipDetails(OrderDetails shipAddress )
         {
 
-            shipAddress.OrderPlaced = DateTime.Now;
+            shipAddress.OrderPlaced = DateTime.Now.ToString();
 
             var cartProducts = _cart.CartItems;
             shipAddress.OrderTotal = _cart.GetCartTotal();
@@ -49,24 +49,39 @@ namespace JaskiniaGier.Models.Repositories
 
         }
 
-        public IEnumerable<Order> GetOrder(string userId)
+        public IEnumerable<OrderDTO> GetOrder(string userId)
         {
-            var order = _appDbContext.Orders.Where(x => x.OrderDetails.UserId == userId)
+            List<OrderDTO> query = GetOrdersByQuery(userId);
+
+            return query;
+        }
+
+        
+
+        public IEnumerable<Order> GetOrderByIdAndOrderPlaced(string userId, string orderPlaced)
+        {
+           
+            var order = _appDbContext.Orders.Where(x => x.OrderDetails.UserId == userId && x.OrderDetails.OrderPlaced == orderPlaced)
                                             .Include(x => x.OrderDetails)
                                             .Include(x => x.Game);
 
+
             return order;
         }
 
-        public IEnumerable<Order> GetOrderById(int orderId)
+        private List<OrderDTO> GetOrdersByQuery(string userId)
         {
-            var order = _appDbContext.Orders.Where(x => x.OrderId == orderId)
-                                            .Include(x => x.Game);
-                                            
-
-            return order;
+            return _appDbContext.Orders.Include(x => x.OrderDetails)
+                         .Where(x => x.OrderDetails.UserId == userId)
+                         .AsEnumerable()
+                         .GroupBy(x => x.OrderDetails.OrderPlaced)
+                         .Select(g => new OrderDTO
+                         {
+                             Id = g.OrderBy(e => e.OrderId).FirstOrDefault().OrderId,
+                             OrderPlaced = g.Key,
+                             Total = g.Sum(e => e.Price * e.Amount),
+                         }
+                          ).ToList();
         }
-
-      
     }
 }

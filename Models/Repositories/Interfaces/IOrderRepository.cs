@@ -11,7 +11,7 @@ namespace JaskiniaGier.Models.Repositories
     public interface IOrderRepository
     {
         void CreateShipDetails(OrderDetails shipAddress);
-        IEnumerable<Order> GetOrder(string userId);
-        IEnumerable<Order> GetOrderById(int orderId);
+        IEnumerable<OrderDTO> GetOrder(string userId);
+        IEnumerable<Order> GetOrderByIdAndOrderPlaced(string userId, string orderPlaced);
     }
 }
