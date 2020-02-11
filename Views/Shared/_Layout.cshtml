@@ -51,6 +51,10 @@
             <li>
                 <a asp-controller="Order" asp-action="GetOrders"><i class="fa fa-user"></i>Zamówienia</a>
             </li>
+            <li>
+                @await Component.InvokeAsync("CartSummary")
+            </li>
+           
         </ul>
     </div>
     <div class="container" style="padding-top: 160px;">
