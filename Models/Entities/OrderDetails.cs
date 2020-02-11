@@ -56,7 +56,7 @@ namespace JaskiniaGier.Models.Entities
         public decimal OrderTotal { get; set; }
 
         [BindNever]
-        public DateTime OrderPlaced { get; set; }
+        public string OrderPlaced { get; set; }
 
         public string UserId { get; set; }
         
