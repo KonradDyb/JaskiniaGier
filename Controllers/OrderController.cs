@@ -53,7 +53,7 @@ namespace JaskiniaGier.Controllers
         public IActionResult OrderDetails(string orderPlaced)
         {
             var userId = _userManager.GetUserId(User);
-            var order = _orderRepository.GetOrderById(userId, orderPlaced);
+            var order = _orderRepository.GetOrderByIdAndOrderPlaced(userId, orderPlaced);
 
             return View(order);
         }
