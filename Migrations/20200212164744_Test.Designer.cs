@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JaskiniaGier.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200210193901_ChangeOrderPlaced")]
-    partial class ChangeOrderPlaced
+    [Migration("20200212164744_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -280,16 +280,19 @@ namespace JaskiniaGier.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<DateTime>("OrderPlaced")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("OrderPlaced")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(9)")
                         .HasMaxLength(9);
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId1")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ZipCode")
                         .IsRequired()
@@ -297,6 +300,8 @@ namespace JaskiniaGier.Migrations
                         .HasMaxLength(6);
 
                     b.HasKey("OrderDetailsId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("OrderDetails");
                 });
@@ -592,6 +597,13 @@ namespace JaskiniaGier.Migrations
                         .HasForeignKey("OrderDetailsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("JaskiniaGier.Models.Entities.OrderDetails", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("JaskiniaGier.Models.Entities.SubGenre", b =>

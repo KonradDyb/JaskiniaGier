@@ -58,7 +58,10 @@ namespace JaskiniaGier.Models.Entities
         [BindNever]
         public string OrderPlaced { get; set; }
 
+
+        public IdentityUser User { get; set; }
         public string UserId { get; set; }
+      
         
     }
 }
