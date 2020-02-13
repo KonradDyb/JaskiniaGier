@@ -12,7 +12,7 @@ namespace JaskiniaGier.Models.Entities
         public string Title { get; set; }
         public string GameDescription { get; set; }
         public string ImagePath { get; set; }
-        public decimal Price { get; set; }
+        public int Price { get; set; }
         public SubGenre SubGenre { get; set; }
         public int SubGenreId { get; set; }
     }
