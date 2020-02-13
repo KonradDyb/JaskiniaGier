@@ -2,6 +2,7 @@
 using JaskiniaGier.Models.Entities;
 using JaskiniaGier.Models.Interfaces;
 using JaskiniaGier.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,22 @@ namespace JaskiniaGier.Controllers
 
             return View(cartViewModel);
 
+        }
+
+        public IActionResult EmptyCart()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Payment()
+        {
+            var items = _cart.GetCartItems();
+            if(items.Count == 0)
+            {
+                return RedirectToAction("EmptyCart");
+            }
+            return View();
         }
 
         [HttpPost]

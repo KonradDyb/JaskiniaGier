@@ -17,12 +17,12 @@
             <tr>
                 <td class="text-left">@line.Amount</td>
                 <td class="text-left">@line.Game.Title</td>
-                <td class="text-left">@line.Game.Price.ToString().Trim('0') zł</td>
+                <td class="text-left">@line.Game.Price.ToString() zł</td>
                 <td class="text-right">
-                    @((line.Amount * line.Game.Price).ToString().Trim('0')) zł
+                    @((line.Amount * line.Game.Price).ToString()) zł
                 </td>
                 <td> <div class="text-center"><a class="btn btn-primary" asp-controller="Cart" asp-action="RemoveItemFromCart" asp-route-gameId="@line.Game.GameId"><i class="fa fa-trash"></i> </a></div></td>
-
+                
             </tr>
         }
     </tbody>
@@ -30,16 +30,19 @@
         <tr>
             <td colspan="3" class="text-right"><b>Suma Całkowita: </b></td>
             <td class="text-right">
-                @Model.CartTotal.ToString().Trim('0') zł
+                @Model.CartTotal.ToString() zł
             </td>
+            
+            
         </tr>
     </tfoot>
 </table>
 
 
 <div class="text-center">
+   
     <a class="btn btn-primary" asp-controller="Game" asp-action="ListAllGames"><i class="fa fa-reply"></i> Wróć do zakupów</a>
-    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Dostawa</a>
+    <a class="btn btn-primary" asp-controller="Cart" asp-action="Payment">Płatność</a>
     <a class="btn btn-primary" asp-controller="Cart" asp-action="ClearCart"><i class="fa fa-trash"></i> Wyczyść Koszyk</a>
 </div>
 
