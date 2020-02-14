@@ -23,15 +23,15 @@ namespace JaskiniaGier.Controllers
             _cart = cart;
         }
 
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
-            var items = _cart.GetCartItems();
+            var items = await _cart.GetCartItemsAsync();
             _cart.CartItems = items;
 
             var cartViewModel = new CartViewModel
             {
                 Cart = _cart,
-                CartTotal = _cart.GetCartTotal()
+                CartTotal = _cart.GetCartTotalAsync().Result
             };
 
             return View(cartViewModel);
@@ -44,50 +44,47 @@ namespace JaskiniaGier.Controllers
         }
 
         [Authorize]
-        public IActionResult Payment()
+        public async Task<IActionResult> PaymentAsync()
         {
-            var items = _cart.GetCartItems();
+            var items = await _cart.GetCartItemsAsync();
             if(items.Count == 0)
             {
-                return RedirectToAction("EmptyCart");
+                return  RedirectToAction("EmptyCart");
             }
             return View();
         }
 
         [HttpPost]
-        public RedirectToActionResult AddToCart(GameViewModel gameView, int gameId)
+        public async Task<RedirectToActionResult> AddToCartAsync(GameViewModel gameView, int gameId)
         {
 
-            var selectedGame = GetGameById(gameId);
+            var selectedGame = await GetGameByIdAsync(gameId);
 
             if(selectedGame != null)
             {
-                _cart.AddToCart(selectedGame, gameView.Amount);
+                await _cart.AddToCartAsync(selectedGame, gameView.Amount);
             }
 
             return RedirectToAction("Index");
         }
 
-        public RedirectToActionResult RemoveItemFromCart(int gameId)
+        public async Task<RedirectToActionResult> RemoveItemFromCartAsync(int gameId)
         {
-            var selectedGame = GetGameById(gameId);
+            var selectedGame = await GetGameByIdAsync(gameId);
 
             if (selectedGame != null)
             {
-                _cart.RemoveFromCart(selectedGame);
+                await _cart.RemoveFromCartAsync(selectedGame);
             }
 
             return RedirectToAction("Index");
         }
 
-        private Game GetGameById(int gameId)
+        private async Task<Game> GetGameByIdAsync(int gameId) => await Task.FromResult(_appDbContext.Games.FirstOrDefault(x => x.GameId == gameId));
+        
+        public async Task<RedirectToActionResult> ClearCartAsync()
         {
-            return _appDbContext.Games.FirstOrDefault(x => x.GameId == gameId);
-        }
-
-        public RedirectToActionResult ClearCart()
-        {
-            _cart.ClearCart();
+            await _cart.ClearCartAsync();
             return RedirectToAction("Index");
         }
     }

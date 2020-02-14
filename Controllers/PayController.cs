@@ -19,19 +19,13 @@ namespace JaskiniaGier.Controllers
             _cart = cart;
         }
 
-    
-
-
         public IActionResult Charge(string stripeEmail, string stripeToken)
         {
             var customers = new CustomerService();
             var charges = new ChargeService();
 
-            var cartTotal = _cart.GetCartTotal().ToString();
+            var cartTotal = _cart.GetCartTotalAsync().Result.ToString();
             cartTotal += "00";
-
-            
-            
 
             var customer = customers.Create(new CustomerCreateOptions
             {

@@ -20,13 +20,13 @@ namespace JaskiniaGier.Models.Repositories
             _cart = cart;
         }
 
-        public void CreateShipDetails(OrderDetails shipAddress )
+        public async Task CreateShipDetailsAsync(OrderDetails shipAddress)
         {
 
             shipAddress.OrderPlaced = DateTime.Now.ToString();
 
             var cartProducts = _cart.CartItems;
-            shipAddress.OrderTotal = _cart.GetCartTotal();
+            shipAddress.OrderTotal = await _cart.GetCartTotalAsync();
 
             shipAddress.Orders = new List<Order>();
 
@@ -49,29 +49,19 @@ namespace JaskiniaGier.Models.Repositories
 
         }
 
-        public IEnumerable<OrderDTO> GetOrder(string userId)
-        {
-            List<OrderDTO> query = GetOrdersByQuery(userId);
+        public async Task<IEnumerable<OrderDTO>> GetOrderAsync(string userId) => await GetOrdersByQueryAsync(userId);
 
-            return query;
-        }
-
-        
-
-        public IEnumerable<Order> GetOrderByIdAndOrderPlaced(string userId, string orderPlaced)
-        {
-           
-            var order = _appDbContext.Orders.Where(x => x.OrderDetails.UserId == userId && x.OrderDetails.OrderPlaced == orderPlaced)
-                                            .Include(x => x.OrderDetails)
-                                            .Include(x => x.Game);
+         
+        public async Task<IEnumerable<Order>> GetOrderByIdAndOrderPlacedAsync(string userId, string orderPlaced) =>
+            await Task.FromResult( _appDbContext.Orders.Where(x => x.OrderDetails.UserId == userId &&
+                                                              x.OrderDetails.OrderPlaced == orderPlaced)
+                                                        .Include(x => x.OrderDetails)
+                                                        .Include(x => x.Game));
 
 
-            return order;
-        }
 
-        private List<OrderDTO> GetOrdersByQuery(string userId)
-        {
-            return _appDbContext.Orders.Include(x => x.OrderDetails)
+        private async Task<List<OrderDTO>> GetOrdersByQueryAsync(string userId) =>
+         await Task.FromResult(_appDbContext.Orders.Include(x => x.OrderDetails)
                          .Where(x => x.OrderDetails.UserId == userId)
                          .AsEnumerable()
                          .GroupBy(x => x.OrderDetails.OrderPlaced)
@@ -81,7 +71,7 @@ namespace JaskiniaGier.Models.Repositories
                              OrderPlaced = g.Key,
                              Total = g.Sum(e => e.Price * e.Amount),
                          }
-                          ).ToList();
-        }
+                          ).ToList());
+        
     }
 }

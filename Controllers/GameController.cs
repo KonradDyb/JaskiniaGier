@@ -21,28 +21,28 @@ namespace JaskiniaGier.Controllers
         }
 
 
-        public IActionResult ShowDetails(int productId)
+        public async Task<IActionResult> ShowDetailsAsync(int productId)
         {
-            var game = _appDbContext.Games.FirstOrDefault(x => x.GameId == productId);
+            var game = await Task.FromResult(_appDbContext.Games.FirstOrDefault(x => x.GameId == productId));
             var gameView = new GameViewModel
             {
                 Game = game
             };
 
-            return View(gameView);
+            return await Task.FromResult(View(gameView));
         }
 
-        public IActionResult ListByGenre(string genre)
+        public async Task<IActionResult> ListByGenreAsync(string genre)
         {
-            var allGames = _appDbContext.Games.Where(x => x.SubGenre.Genre.GenreName == genre);
+            var allGames = await Task.FromResult(_appDbContext.Games.Where(x => x.SubGenre.Genre.GenreName == genre));
             var gameView = GetGameViewModel(allGames);
 
             return View(gameView);
         }
 
-        public IActionResult ListBySubGenre(string subGenre)
+        public async Task<IActionResult> ListBySubGenreAsync(string subGenre)
         {
-            var allGames = _appDbContext.Games.Where(x => x.SubGenre.SubGenreName == subGenre);
+            var allGames = await Task.FromResult(_appDbContext.Games.Where(x => x.SubGenre.SubGenreName == subGenre));
             var gameView = GetGameViewModel(allGames);
 
             return View(gameView);
@@ -50,10 +50,10 @@ namespace JaskiniaGier.Controllers
 
 
 
-        public IActionResult ListAllGames()
+        public async Task<IActionResult> ListAllGamesAsync()
         {
-            var allGames = _appDbContext.Games;
-            var gameView = GetGameViewModel(allGames);
+            var allGames = await Task.FromResult(_appDbContext.Games);
+            var gameView =  GetGameViewModel(allGames);
 
             return View(gameView);
         }
@@ -66,9 +66,9 @@ namespace JaskiniaGier.Controllers
             };
         }
 
-        public IQueryable<Game> GetGamesBy(Func<Game, string> propertySelector, string genre)
+        public async Task<IQueryable<Game>> GetGamesByAsync(Func<Game, string> propertySelector, string genre)
         {
-            return _appDbContext.Games.Where(x => propertySelector(x) == genre);
+            return await Task.FromResult(_appDbContext.Games.Where(x => propertySelector(x) == genre));
         }
     }
 }

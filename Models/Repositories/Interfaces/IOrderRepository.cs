@@ -10,8 +10,9 @@ namespace JaskiniaGier.Models.Repositories
 {
     public interface IOrderRepository
     {
-        void CreateShipDetails(OrderDetails shipAddress);
-        IEnumerable<OrderDTO> GetOrder(string userId);
-        IEnumerable<Order> GetOrderByIdAndOrderPlaced(string userId, string orderPlaced);
+        Task CreateShipDetailsAsync(OrderDetails shipAddress);
+        Task<IEnumerable<OrderDTO>> GetOrderAsync(string userId);
+        Task<IEnumerable<Order>> GetOrderByIdAndOrderPlacedAsync(string userId, string orderPlaced);
+       
     }
 }
