@@ -1,14 +1,9 @@
-body {
-    background-color: #E0E0E0;
-}
-
-
 .product-grid {
     font-family: 'Roboto Condensed', sans-serif;
     text-align: center;
     overflow: hidden;
     position: relative;
-    border: 4px solid #fff;
+    border: 1px solid #000;
     margin-top: 10%;
 }
 

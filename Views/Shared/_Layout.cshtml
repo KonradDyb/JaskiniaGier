@@ -54,13 +54,26 @@
             <li>
                 @await Component.InvokeAsync("CartSummary")
             </li>
-           
+
         </ul>
     </div>
     <div class="container" style="padding-top: 160px;">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+    </div>
+
+    <div class="footer">
+
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <small style="color:rgb(235, 224, 224)"><i class="fa fa-copyright"></i> Created by Konrad Dybkowski</small>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://kit.fontawesome.com/b3ae133f06.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
