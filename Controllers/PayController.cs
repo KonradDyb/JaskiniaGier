@@ -19,7 +19,7 @@ namespace JaskiniaGier.Controllers
             _cart = cart;
         }
 
-        public IActionResult Charge(string stripeEmail, string stripeToken)
+        public async Task<IActionResult> Charge(string stripeEmail, string stripeToken)
         {
             var customers = new CustomerService();
             var charges = new ChargeService();
@@ -27,7 +27,7 @@ namespace JaskiniaGier.Controllers
             var cartTotal = _cart.GetCartTotalAsync().Result.ToString();
             cartTotal += "00";
 
-            var customer = customers.Create(new CustomerCreateOptions
+            var customer = await customers.CreateAsync(new CustomerCreateOptions
             {
                 Email = stripeEmail,
                 Source = stripeToken
@@ -38,7 +38,7 @@ namespace JaskiniaGier.Controllers
                 return RedirectToAction("EmptyCart");
             }
 
-            var charge = charges.Create(new ChargeCreateOptions
+            var charge = await charges.CreateAsync(new ChargeCreateOptions
             {
                 Amount = Convert.ToInt64(cartTotal),
                 Description = "Test Payment",
@@ -54,12 +54,12 @@ namespace JaskiniaGier.Controllers
                 return View();
             }
 
-            else
+            else 
             {
-
+                return View();
             }
 
-            return View();
+           
         }
     }
 }

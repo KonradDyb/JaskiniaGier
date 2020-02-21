@@ -17,6 +17,11 @@ namespace JaskiniaGier.Models
 
         public List<CartItem> CartItems { get; set; }
 
+
+        public Cart()
+        {
+
+        }
         private Cart(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;

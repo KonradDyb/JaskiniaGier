@@ -1,5 +1,6 @@
 ﻿using JaskiniaGier.Models.Entities;
 using JaskiniaGier.ViewModels;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,7 @@ namespace JaskiniaGier.Models.Repositories
     public interface IOrderRepository
     {
         Task CreateShipDetailsAsync(OrderDetails shipAddress);
-        Task<IEnumerable<OrderDTO>> GetOrderAsync(string userId);
-        Task<IEnumerable<Order>> GetOrderByIdAndOrderPlacedAsync(string userId, string orderPlaced);
-       
+        Task<List<OrderDTO>> GetOrdersByAsync(string userId);
+        Task<IIncludableQueryable<Order, Game>> GetOrdersByAsync(string userId, string orderPlaced);
     }
 }

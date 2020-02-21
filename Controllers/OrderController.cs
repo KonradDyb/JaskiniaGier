@@ -35,7 +35,7 @@ namespace JaskiniaGier.Controllers
         public async Task<IActionResult> GetOrdersAsync()
         {
             var userId = _userManager.GetUserId(User);
-            var getOrder = await _orderRepository.GetOrderAsync(userId);
+            var getOrder = await _orderRepository.GetOrdersByAsync(userId);
 
             if (getOrder.IsAny())
             {
@@ -54,7 +54,7 @@ namespace JaskiniaGier.Controllers
         public async Task<IActionResult> OrderDetailsAsync(string orderPlaced)
         {
             var userId = _userManager.GetUserId(User);
-            var order = await _orderRepository.GetOrderByIdAndOrderPlacedAsync(userId, orderPlaced);
+            var order = await _orderRepository.GetOrdersByAsync(userId, orderPlaced);
 
             return View(order);
         }
