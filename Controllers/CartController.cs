@@ -49,7 +49,7 @@ namespace JaskiniaGier.Controllers
             var items = await _cart.GetCartItemsAsync();
             if(items.Count == 0)
             {
-                return  RedirectToAction("EmptyCart");
+                return RedirectToAction("EmptyCart");
             }
             return View();
         }

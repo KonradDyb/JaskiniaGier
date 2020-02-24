@@ -22,7 +22,7 @@ namespace JaskiniaGier.Models
         {
 
         }
-        private Cart(AppDbContext appDbContext)
+        public Cart(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
