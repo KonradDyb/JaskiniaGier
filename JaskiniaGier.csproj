@@ -5,10 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="JaskiniaGier.Tests\**" />
+    <Content Remove="JaskiniaGier.Tests\**" />
+    <EmbeddedResource Remove="JaskiniaGier.Tests\**" />
+    <None Remove="JaskiniaGier.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20200208081218_IdentityUser.cs" />
     <Compile Remove="Migrations\20200208081218_IdentityUser.Designer.cs" />
     <Compile Remove="Migrations\20200210193901_ChangeOrderPlaced.cs" />
     <Compile Remove="Migrations\20200210193901_ChangeOrderPlaced.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="q" />
   </ItemGroup>
 
   <ItemGroup>
