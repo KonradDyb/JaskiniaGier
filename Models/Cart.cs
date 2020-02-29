@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace JaskiniaGier.Models
 {
@@ -16,7 +17,12 @@ namespace JaskiniaGier.Models
 
         public List<CartItem> CartItems { get; set; }
 
-        private Cart(AppDbContext appDbContext)
+
+        public Cart()
+        {
+
+        }
+        public Cart(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
@@ -42,11 +48,11 @@ namespace JaskiniaGier.Models
            
         }
 
-        public void AddToCart(Game game, int amount)
+        public async Task AddToCartAsync(Game game, int amount)
         {
             var shoppingCartItem =
-                    _appDbContext.CartItems.SingleOrDefault(
-                        x => x.Game.GameId == game.GameId && x.CartId == SessionCartId);
+                    await Task.FromResult(_appDbContext.CartItems.SingleOrDefault(
+                        x => x.Game.GameId == game.GameId && x.CartId == SessionCartId));
 
             if (shoppingCartItem == null)
             {
@@ -66,11 +72,11 @@ namespace JaskiniaGier.Models
             _appDbContext.SaveChanges();
         }
 
-        public void RemoveFromCart(Game game)
+        public async Task RemoveFromCartAsync(Game game)
         {
             var shoppingCartItem =
-                    _appDbContext.CartItems.SingleOrDefault(
-                        x => x.Game.GameId == game.GameId && x.CartId == SessionCartId);
+                    await Task.FromResult(_appDbContext.CartItems.SingleOrDefault(
+                        x => x.Game.GameId == game.GameId && x.CartId == SessionCartId));
 
 
             if (shoppingCartItem != null)
@@ -86,31 +92,27 @@ namespace JaskiniaGier.Models
 
         }
 
-        public List<CartItem> GetCartItems()
-        {
-            return CartItems ??
-                   (CartItems =
-                       _appDbContext.CartItems.Where(x => x.CartId == SessionCartId)
+        public async Task<List<CartItem>> GetCartItemsAsync() => await Task.FromResult(CartItems ??
+                   (CartItems = _appDbContext.CartItems.Where(x => x.CartId == SessionCartId)
                            .Include(x => x.Game)
-                           .ToList());
-        }
+                           .ToList()));
+     
 
-        public void ClearCart()
+        public async Task ClearCartAsync()
         {
-            var cartItems = _appDbContext
+            var cartItems = await Task.FromResult(_appDbContext
                 .CartItems
-                .Where(x => x.CartId == SessionCartId);
+                .Where(x => x.CartId == SessionCartId));
 
             _appDbContext.CartItems.RemoveRange(cartItems);
 
             _appDbContext.SaveChanges();
         }
 
-        public decimal GetCartTotal()
-        {
-            var total = _appDbContext.CartItems.Where(x => x.CartId == SessionCartId)
-                .Select(x => x.Game.Price * x.Amount).Sum();
-            return total;
-        }
+        public async Task<int> GetCartTotalAsync() =>
+            await Task.FromResult(_appDbContext.CartItems.Where(x => x.CartId == SessionCartId)
+                .Select(x => x.Game.Price * x.Amount).Sum());
+         
+        
     }
 }

@@ -20,13 +20,13 @@ namespace JaskiniaGier.Components
 
         public IViewComponentResult Invoke()
         {
-            var items = _cart.GetCartItems();
-            _cart.CartItems = items;
+            var items = _cart.GetCartItemsAsync();
+            _cart.CartItems = items.Result;
 
             var cartViewModel = new CartViewModel
             {
                 Cart = _cart,
-                CartTotal = _cart.GetCartTotal()
+                CartTotal =  Convert.ToDecimal(_cart.GetCartTotalAsync().Result)
             };
 
             return View(cartViewModel);

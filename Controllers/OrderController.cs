@@ -32,17 +32,18 @@ namespace JaskiniaGier.Controllers
             return View();   
         }
 
-        public IActionResult GetOrders()
+        public async Task<IActionResult> GetOrdersAsync()
         {
             var userId = _userManager.GetUserId(User);
-            var getOrder = _orderRepository.GetOrder(userId);
+            var getOrder = await _orderRepository.GetOrdersByAsync(userId);
 
-           
-            
+            if (getOrder.IsAny())
+            {
                 return View(getOrder);
-            
+            }
 
-            
+
+            return RedirectToAction("EmptyOrder");  
         }
 
         public IActionResult EmptyOrder()
@@ -50,10 +51,10 @@ namespace JaskiniaGier.Controllers
             return View();
         }
 
-        public IActionResult OrderDetails(string orderPlaced)
+        public async Task<IActionResult> OrderDetailsAsync(string orderPlaced)
         {
             var userId = _userManager.GetUserId(User);
-            var order = _orderRepository.GetOrderByIdAndOrderPlaced(userId, orderPlaced);
+            var order = await _orderRepository.GetOrdersByAsync(userId, orderPlaced);
 
             return View(order);
         }
@@ -64,21 +65,21 @@ namespace JaskiniaGier.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(OrderDetails orderDetails)
+        public async Task<IActionResult> CheckoutAsync(OrderDetails orderDetails)
         {
-            var products = _cart.GetCartItems();
+            var products = await _cart.GetCartItemsAsync();
             _cart.CartItems = products;
 
             if (_cart.CartItems.Count == 0)
             {
-                return RedirectToAction("EmptyCart");
+                return await Task.FromResult(RedirectToAction("EmptyCart"));
             }
 
             if (ModelState.IsValid)
             {
                 orderDetails.UserId = _userManager.GetUserId(User);
-                _orderRepository.CreateShipDetails(orderDetails);
-                _cart.ClearCart();
+                await _orderRepository.CreateShipDetailsAsync(orderDetails);
+                await _cart.ClearCartAsync();
                 return RedirectToAction("CheckoutComplete");
             }
 

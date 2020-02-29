@@ -38,12 +38,14 @@
             <p><b>Opis Gry: </b>@Model.Game.GameDescription</p>
             <p><b>Źródło opisu:</b> <a href="https://www.gry-online.pl/">www.gryonline.pl</a></p>
             <p><b>Platforma: </b>PC</p>
+
             <form asp-controller="Cart" asp-action="AddToCart" asp-route-gameId="@Model.Game.GameId" method="post">
                 <div class="form-group">
                     <label asp-for="Amount">Ilość: </label>
                     <input asp-for="Amount" class="form-control" value="1" type="number" max="99" min="1" />
                     <span asp-validation-for="Amount" class="text-danger"></span>
                     <button type="submit" class="btn btn-primary" value="KUP"> <i class="fa fa-cart-plus"> KUP</i></button>
+                    <a class="btn btn-primary" asp-controller="Game" asp-action="ListAllGames"><i class="fa fa-reply"></i> Wróć do zakupów</a>
                 </div>
 
 

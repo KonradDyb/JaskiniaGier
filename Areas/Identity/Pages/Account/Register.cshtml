@@ -10,8 +10,7 @@
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h4>Utwórz nowe konto.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
+            <hr /> 
             <div class="form-group">
                 <label asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" class="form-control" />
@@ -32,6 +31,4 @@
     </div>
 </div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+

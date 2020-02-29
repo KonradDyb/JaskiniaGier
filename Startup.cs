@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Stripe;
 
 namespace JaskiniaGier
 {
@@ -42,6 +43,7 @@ namespace JaskiniaGier
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
