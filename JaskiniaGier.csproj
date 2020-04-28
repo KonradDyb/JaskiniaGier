@@ -16,6 +16,10 @@
     <Compile Remove="Migrations\20200208081218_IdentityUser.Designer.cs" />
     <Compile Remove="Migrations\20200210193901_ChangeOrderPlaced.cs" />
     <Compile Remove="Migrations\20200210193901_ChangeOrderPlaced.Designer.cs" />
+    <Compile Remove="Migrations\20200428200748_ChangeSomeNames.cs" />
+    <Compile Remove="Migrations\20200428200748_ChangeSomeNames.Designer.cs" />
+    <Compile Remove="Migrations\20200428203801_ChangeEntitiesNames.cs" />
+    <Compile Remove="Migrations\20200428203801_ChangeEntitiesNames.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

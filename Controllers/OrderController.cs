@@ -3,10 +3,6 @@ using JaskiniaGier.Models.Entities;
 using JaskiniaGier.Models.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
@@ -32,14 +28,14 @@ namespace JaskiniaGier.Controllers
             return View();   
         }
 
-        public async Task<IActionResult> GetOrdersAsync()
+        public async Task<IActionResult> ShowCompleteOrdersAsync()
         {
             var userId = _userManager.GetUserId(User);
-            var getOrder = await _orderRepository.GetOrdersByAsync(userId);
+            var orders = await _orderRepository.GetOrdersByAsync(userId);
 
-            if (getOrder.IsAny())
+            if (orders.IsAny())
             {
-                return View(getOrder);
+                return View(orders);
             }
 
 
@@ -51,7 +47,7 @@ namespace JaskiniaGier.Controllers
             return View();
         }
 
-        public async Task<IActionResult> OrderDetailsAsync(string orderPlaced)
+        public async Task<IActionResult> ShowCompleteOrderDetails(string orderPlaced)
         {
             var userId = _userManager.GetUserId(User);
             var order = await _orderRepository.GetOrdersByAsync(userId, orderPlaced);
@@ -65,10 +61,10 @@ namespace JaskiniaGier.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CheckoutAsync(OrderDetails orderDetails)
+        public async Task<IActionResult> CheckoutAsync(Order order)
         {
-            var products = await _cart.GetCartItemsAsync();
-            _cart.CartItems = products;
+            var items = await _cart.GetCartItemsAsync();
+            _cart.CartItems = items;
 
             if (_cart.CartItems.Count == 0)
             {
@@ -77,13 +73,13 @@ namespace JaskiniaGier.Controllers
 
             if (ModelState.IsValid)
             {
-                orderDetails.UserId = _userManager.GetUserId(User);
-                await _orderRepository.CreateShipDetailsAsync(orderDetails);
+                order.UserId = _userManager.GetUserId(User);
+                await _orderRepository.CreateShipDetailsAsync(order);
                 await _cart.ClearCartAsync();
                 return RedirectToAction("CheckoutComplete");
             }
 
-            return View(orderDetails);
+            return View(order);
         }
 
         public IActionResult CheckoutComplete()

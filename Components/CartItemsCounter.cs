@@ -2,18 +2,14 @@
 using JaskiniaGier.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JaskiniaGier.Components
 {
-    public class CartSummary : ViewComponent
+    public class CartItemsCounter : ViewComponent
     {
         private readonly Cart _cart;
 
-        public CartSummary(Cart cart)
+        public CartItemsCounter(Cart cart)
         {
             _cart = cart;
         }

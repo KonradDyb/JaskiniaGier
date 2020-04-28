@@ -1,12 +1,10 @@
 ﻿using JaskiniaGier.Models;
 using JaskiniaGier.Models.Entities;
-using JaskiniaGier.Models.Interfaces;
 using JaskiniaGier.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JaskiniaGier.Controllers
@@ -21,7 +19,7 @@ namespace JaskiniaGier.Controllers
         }
 
 
-        public async Task<IActionResult> ShowDetailsAsync(int productId)
+        public async Task<IActionResult> ShowGameDetailsAsync(int productId)
         {
             var game = await Task.FromResult(_appDbContext.Games.FirstOrDefault(x => x.GameId == productId));
             var gameView = new GameViewModel
@@ -32,7 +30,7 @@ namespace JaskiniaGier.Controllers
             return await Task.FromResult(View(gameView));
         }
 
-        public async Task<IActionResult> ListByGenreAsync(string genre)
+        public async Task<IActionResult> ShowGamesFiltersByGenreAsync(string genre)
         {
             var allGames = await Task.FromResult(_appDbContext.Games.Where(x => x.SubGenre.Genre.GenreName == genre));
             var gameView = GetGameViewModel(allGames);
@@ -40,7 +38,7 @@ namespace JaskiniaGier.Controllers
             return View(gameView);
         }
 
-        public async Task<IActionResult> ListBySubGenreAsync(string subGenre)
+        public async Task<IActionResult> ShowGamesFiltersBySubGenreAsync(string subGenre)
         {
             var allGames = await Task.FromResult(_appDbContext.Games.Where(x => x.SubGenre.SubGenreName == subGenre));
             var gameView = GetGameViewModel(allGames);

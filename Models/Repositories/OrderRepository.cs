@@ -1,11 +1,9 @@
 ﻿using JaskiniaGier.Models.Entities;
-using JaskiniaGier.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JaskiniaGier.Models.Repositories
@@ -21,30 +19,30 @@ namespace JaskiniaGier.Models.Repositories
             _cart = cart;
         }
 
-        public async Task CreateShipDetailsAsync(OrderDetails shipAddress)
+        public async Task CreateShipDetailsAsync(Order order)
         {
 
-            shipAddress.OrderPlaced = DateTime.Now.ToString();
+            order.OrderPlaced = DateTime.Now.ToString();
 
-            var cartProducts = _cart.CartItems;
-            shipAddress.OrderTotal = await _cart.GetCartTotalAsync();
+            var cartItems = _cart.CartItems;
+            order.OrderTotal = await _cart.GetCartTotalAsync();
+            
+            order.OrderItems = new List<OrderItems>();
 
-            shipAddress.Orders = new List<Order>();
-
-            foreach (var product in cartProducts)
+            foreach (var item in cartItems)
             {
-                var orderInfo = new Order
+                var orderInfo = new OrderItems
                 {
-                    Amount = product.Amount,
-                    GameId = product.Game.GameId,
-                    Price = product.Game.Price
+                    Amount = item.Amount,
+                    GameId = item.Game.GameId,
+                    Price = item.Game.Price
                 };
 
 
-                shipAddress.Orders.Add(orderInfo);
+                order.OrderItems.Add(orderInfo);
             }
 
-            _appDbContext.OrderDetails.Add(shipAddress);
+            _appDbContext.Orders.Add(order);
 
             _appDbContext.SaveChanges();
 
@@ -54,24 +52,24 @@ namespace JaskiniaGier.Models.Repositories
 
         public async Task<List<OrderDTO>> GetOrdersByAsync(string userId) =>
        
-            await Task.FromResult(_appDbContext.Orders.Include(x => x.OrderDetails)
-                        .Where(x => x.OrderDetails.UserId == userId)
+            await Task.FromResult(_appDbContext.OrderItems.Include(x => x.Order)
+                        .Where(x => x.Order.UserId == userId)
                         .AsEnumerable()
-                        .GroupBy(x => x.OrderDetails.OrderPlaced)
+                        .GroupBy(x => x.Order.OrderPlaced)
                         .Select(g => new OrderDTO
                         {
-                            Id = g.OrderBy(e => e.OrderId).FirstOrDefault().OrderId,
+                            Id = g.OrderBy(e => e.OrderItemsId).FirstOrDefault().OrderItemsId,
                             OrderPlaced = g.Key,
                             Total = g.Sum(e => e.Price * e.Amount),
                         }
                          ).ToList());
 
-        public async Task<IIncludableQueryable<Order, Game>> GetOrdersByAsync(string userId, 
+        public async Task<IIncludableQueryable<OrderItems, Game>> GetOrdersByAsync(string userId, 
             string orderPlaced) =>
         
-            await Task.FromResult(_appDbContext.Orders.Where(x => x.OrderDetails.UserId == userId &&
-                                                             x.OrderDetails.OrderPlaced == orderPlaced)
-                                                                   .Include(x => x.OrderDetails)
+            await Task.FromResult(_appDbContext.OrderItems.Where(x => x.Order.UserId == userId &&
+                                                             x.Order.OrderPlaced == orderPlaced)
+                                                                   .Include(x => x.Order)
                                                                     .Include(x => x.Game));
         
 

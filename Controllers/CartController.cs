@@ -1,13 +1,9 @@
 ﻿using JaskiniaGier.Models;
 using JaskiniaGier.Models.Entities;
-using JaskiniaGier.Models.Interfaces;
 using JaskiniaGier.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace JaskiniaGier.Controllers
@@ -44,7 +40,7 @@ namespace JaskiniaGier.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> PaymentAsync()
+        public async Task<IActionResult> GoToPaymentAsync()
         {
             var items = await _cart.GetCartItemsAsync();
             if(items.Count == 0)

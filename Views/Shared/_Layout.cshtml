@@ -24,35 +24,35 @@
                     <ul>
                         <li class="hover-me">
 
-                            <a asp-controller="Game" asp-action="ListByGenre" asp-route-genre="Strategiczne">Strategiczne</a><i class="fa fa-angle-right"></i>
+                            <a asp-controller="Game" asp-action="ShowGamesFiltersByGenre" asp-route-genre="Strategiczne">Strategiczne</a><i class="fa fa-angle-right"></i>
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a asp-controller="Game" asp-action="ListBySubGenre" asp-route-subGenre="Ekonomiczne">Ekonomiczne</a></li>
-                                    <li><a asp-controller="Game" asp-action="ListBySubGenre" asp-route-subGenre="RTS">RTS</a></li>
-                                    <li><a asp-controller="Game" asp-action="ListBySubGenre" asp-route-subGenre="Taktyczne">Taktyczne</a></li>
+                                    <li><a asp-controller="Game" asp-action="ShowGamesFiltersBySubGenre" asp-route-subGenre="Ekonomiczne">Ekonomiczne</a></li>
+                                    <li><a asp-controller="Game" asp-action="ShowGamesFiltersBySubGenre" asp-route-subGenre="RTS">RTS</a></li>
+                                    <li><a asp-controller="Game" asp-action="ShowGamesFiltersBySubGenre" asp-route-subGenre="Taktyczne">Taktyczne</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="hover-me">
-                            <a asp-controller="Game" asp-action="ListByGenre" asp-route-genre="Fabularne">Fabularne</a><i class="fa fa-angle-right"></i>
+                            <a asp-controller="Game" asp-action="ShowGamesFiltersByGenre" asp-route-genre="Fabularne">Fabularne</a><i class="fa fa-angle-right"></i>
 
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a asp-controller="Game" asp-action="ListBySubGenre" asp-route-subGenre="Hack & Slash">Hack & Slash</a></li>
-                                    <li><a asp-controller="Game" asp-action="ListBySubGenre" asp-route-subGenre="MMORPG">MMORPG</a></li>
+                                    <li><a asp-controller="Game" asp-action="ShowGamesFiltersBySubGenre" asp-route-subGenre="Hack & Slash">Hack & Slash</a></li>
+                                    <li><a asp-controller="Game" asp-action="ShowGamesFiltersBySubGenre" asp-route-subGenre="MMORPG">MMORPG</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li><a asp-controller="Game" asp-action="ListByGenre" asp-route-genre="Symulacyjne">Symulacyjne</a></li>
+                        <li><a asp-controller="Game" asp-action="ShowGamesFiltersByGenre" asp-route-genre="Symulacyjne">Symulacyjne</a></li>
                     </ul>
                 </div>
             </li>
             <partial name="_LoginPartial" />
             <li>
-                <a asp-controller="Order" asp-action="GetOrders"><i class="fa fa-user"></i>Zamówienia</a>
+                <a asp-controller="Order" asp-action="ShowCompleteOrders"><i class="fa fa-user"></i>Zamówienia</a>
             </li>
             <li>
-                @await Component.InvokeAsync("CartSummary")
+                @await Component.InvokeAsync("CartItemsCounter")
             </li>
         </ul>
     </div>

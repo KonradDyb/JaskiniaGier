@@ -13,7 +13,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td class="text-center"><a asp-controller="Order" asp-action="OrderDetails" 
+                <td class="text-center"><a asp-controller="Order" asp-action="ShowCompleteOrderDetails" 
                                            asp-route-orderPlaced="@item.OrderPlaced" class="btn btn-primary">@item.Id</a></td>
                 <td class="text-center">@item.OrderPlaced</td>
                 <td class="text-center">@item.Total zł</td>

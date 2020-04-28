@@ -2,11 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JaskiniaGier.Models
 {
@@ -21,8 +16,8 @@ namespace JaskiniaGier.Models
         public DbSet<Genre> Genres { get; set; }
         public DbSet<SubGenre> SubGenres { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetails> OrderDetails  { get; set; }
+        public DbSet<OrderItems> OrderItems { get; set; }
+        public DbSet<Order> Orders  { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

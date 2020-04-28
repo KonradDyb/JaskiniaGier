@@ -34,7 +34,7 @@ namespace JaskiniaGier.Tests
             Controller = new CartController(context,_cart.Object);
 
             //Act
-            var result = await Controller.PaymentAsync();
+            var result = await Controller.GoToPaymentAsync();
 
             //Assert
             result.Should().BeOfType<ViewResult>();
@@ -51,7 +51,7 @@ namespace JaskiniaGier.Tests
             Controller = new CartController(context, _cart.Object);
 
             //Act
-            var result = await Controller.PaymentAsync();
+            var result = await Controller.GoToPaymentAsync();
 
             //Assert
             result.Should().BeOfType<RedirectToActionResult>();
