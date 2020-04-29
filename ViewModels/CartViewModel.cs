@@ -10,7 +10,7 @@ namespace JaskiniaGier.ViewModels
 {
     public class CartViewModel
     {
-        public Cart Cart { get; set; }
+        public CartService Cart { get; set; }
         public decimal CartTotal { get; set; }
     }
 }

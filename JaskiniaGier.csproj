@@ -20,6 +20,14 @@
     <Compile Remove="Migrations\20200428200748_ChangeSomeNames.Designer.cs" />
     <Compile Remove="Migrations\20200428203801_ChangeEntitiesNames.cs" />
     <Compile Remove="Migrations\20200428203801_ChangeEntitiesNames.Designer.cs" />
+    <Compile Remove="Migrations\20200428204155_ChangeEntitiesNames.cs" />
+    <Compile Remove="Migrations\20200428204155_ChangeEntitiesNames.Designer.cs" />
+    <Compile Remove="Migrations\20200428221310_ChangesEntitiesNames.cs" />
+    <Compile Remove="Migrations\20200428221310_ChangesEntitiesNames.Designer.cs" />
+    <Compile Remove="Migrations\20200428223238_ChangeEntitiesNames.cs" />
+    <Compile Remove="Migrations\20200428223238_ChangeEntitiesNames.Designer.cs" />
+    <Compile Remove="Migrations\20200429061552_ChangeEntitiesNames.cs" />
+    <Compile Remove="Migrations\20200429061552_ChangeEntitiesNames.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

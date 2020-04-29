@@ -16,7 +16,7 @@ namespace JaskiniaGier.Tests
             //Arrange
             UseSqlServer();
             using var context = GetDbContext();
-            var cart = new Mock<Cart>();
+            var cart = new Mock<CartService>();
             var cartItemsRepo = new CartItemsRepository();
             cart.Object.CartItems = cartItemsRepo.CartItems.ToList();
 
@@ -38,7 +38,7 @@ namespace JaskiniaGier.Tests
             //Arrange
             UseSqlServer();
             using var context = GetDbContext();
-            var cart = new Mock<Cart>();
+            var cart = new Mock<CartService>();
             cart.Object.CartItems = new List<CartItem>();
 
             //Act

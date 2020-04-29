@@ -15,13 +15,13 @@ namespace JaskiniaGier.Tests
     {
       
         public CartController Controller { get; set; }
-        Mock<Cart> _cart;
+        Mock<CartService> _cart;
         Mock<CartItemsRepository> _cartItemsRepo;
 
         public CartControllerTests()
         {
             UseSqlServer();
-            _cart = new Mock<Cart>();
+            _cart = new Mock<CartService>();
             _cartItemsRepo = new Mock<CartItemsRepository>();
         }
 

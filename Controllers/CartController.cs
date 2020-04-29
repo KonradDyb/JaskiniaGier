@@ -11,9 +11,9 @@ namespace JaskiniaGier.Controllers
     public class CartController : Controller
     {
         private readonly AppDbContext _appDbContext;
-        private readonly Cart _cart;
+        private readonly CartService _cart;
 
-        public CartController(AppDbContext appDbContext, Cart cart)
+        public CartController(AppDbContext appDbContext, CartService cart)
         {
             _appDbContext = appDbContext;
             _cart = cart;

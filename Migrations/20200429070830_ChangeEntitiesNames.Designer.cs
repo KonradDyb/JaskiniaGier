@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JaskiniaGier.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200428204155_ChangeEntitiesNames")]
+    [Migration("20200429070830_ChangeEntitiesNames")]
     partial class ChangeEntitiesNames
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,11 +31,11 @@ namespace JaskiniaGier.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<string>("CartId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("GameId")
+                    b.Property<int>("GameId")
                         .HasColumnType("int");
+
+                    b.Property<string>("SessionCartId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CartItemId");
 
@@ -252,6 +252,9 @@ namespace JaskiniaGier.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
+                    b.Property<int>("OrderItemId")
+                        .HasColumnType("int");
+
                     b.Property<string>("OrderPlaced")
                         .HasColumnType("nvarchar(max)");
 
@@ -273,9 +276,9 @@ namespace JaskiniaGier.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("JaskiniaGier.Models.Entities.OrderItems", b =>
+            modelBuilder.Entity("JaskiniaGier.Models.Entities.OrderItem", b =>
                 {
-                    b.Property<int>("OrderItemsId")
+                    b.Property<int>("OrderItemId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -286,13 +289,13 @@ namespace JaskiniaGier.Migrations
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("OrderItemsId");
+                    b.HasKey("OrderItemId");
 
                     b.HasIndex("GameId");
 
@@ -567,7 +570,9 @@ namespace JaskiniaGier.Migrations
                 {
                     b.HasOne("JaskiniaGier.Models.Entities.Game", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("JaskiniaGier.Models.Entities.Game", b =>
@@ -579,7 +584,7 @@ namespace JaskiniaGier.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("JaskiniaGier.Models.Entities.OrderItems", b =>
+            modelBuilder.Entity("JaskiniaGier.Models.Entities.OrderItem", b =>
                 {
                     b.HasOne("JaskiniaGier.Models.Entities.Game", "Game")
                         .WithMany()
@@ -589,9 +594,7 @@ namespace JaskiniaGier.Migrations
 
                     b.HasOne("JaskiniaGier.Models.Entities.Order", "Order")
                         .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("JaskiniaGier.Models.Entities.SubGenre", b =>

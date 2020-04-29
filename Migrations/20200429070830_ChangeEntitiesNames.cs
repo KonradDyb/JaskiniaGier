@@ -7,6 +7,10 @@ namespace JaskiniaGier.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
+                name: "FK_CartItems_Games_GameId",
+                table: "CartItems");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Orders_Games_GameId",
                 table: "Orders");
 
@@ -41,6 +45,10 @@ namespace JaskiniaGier.Migrations
                 name: "Price",
                 table: "Orders");
 
+            migrationBuilder.DropColumn(
+                name: "CartId",
+                table: "CartItems");
+
             migrationBuilder.AddColumn<string>(
                 name: "Address1",
                 table: "Orders",
@@ -75,6 +83,12 @@ namespace JaskiniaGier.Migrations
                 maxLength: 50,
                 nullable: false,
                 defaultValue: "");
+
+            migrationBuilder.AddColumn<int>(
+                name: "OrderItemId",
+                table: "Orders",
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.AddColumn<string>(
                 name: "OrderPlaced",
@@ -100,20 +114,33 @@ namespace JaskiniaGier.Migrations
                 nullable: false,
                 defaultValue: "");
 
+            migrationBuilder.AlterColumn<int>(
+                name: "GameId",
+                table: "CartItems",
+                nullable: false,
+                oldClrType: typeof(int),
+                oldType: "int",
+                oldNullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "SessionCartId",
+                table: "CartItems",
+                nullable: true);
+
             migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
                 {
-                    OrderItemsId = table.Column<int>(nullable: false)
+                    OrderItemId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GameId = table.Column<int>(nullable: false),
-                    OrderId = table.Column<int>(nullable: false),
+                    OrderId = table.Column<int>(nullable: true),
                     Amount = table.Column<int>(nullable: false),
                     Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItems", x => x.OrderItemsId);
+                    table.PrimaryKey("PK_OrderItems", x => x.OrderItemId);
                     table.ForeignKey(
                         name: "FK_OrderItems_Games_GameId",
                         column: x => x.GameId,
@@ -125,7 +152,7 @@ namespace JaskiniaGier.Migrations
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -137,10 +164,22 @@ namespace JaskiniaGier.Migrations
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CartItems_Games_GameId",
+                table: "CartItems",
+                column: "GameId",
+                principalTable: "Games",
+                principalColumn: "GameId",
+                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_CartItems_Games_GameId",
+                table: "CartItems");
+
             migrationBuilder.DropTable(
                 name: "OrderItems");
 
@@ -165,6 +204,10 @@ namespace JaskiniaGier.Migrations
                 table: "Orders");
 
             migrationBuilder.DropColumn(
+                name: "OrderItemId",
+                table: "Orders");
+
+            migrationBuilder.DropColumn(
                 name: "OrderPlaced",
                 table: "Orders");
 
@@ -179,6 +222,10 @@ namespace JaskiniaGier.Migrations
             migrationBuilder.DropColumn(
                 name: "ZipCode",
                 table: "Orders");
+
+            migrationBuilder.DropColumn(
+                name: "SessionCartId",
+                table: "CartItems");
 
             migrationBuilder.AddColumn<int>(
                 name: "Amount",
@@ -207,6 +254,19 @@ namespace JaskiniaGier.Migrations
                 type: "decimal(18,2)",
                 nullable: false,
                 defaultValue: 0m);
+
+            migrationBuilder.AlterColumn<int>(
+                name: "GameId",
+                table: "CartItems",
+                type: "int",
+                nullable: true,
+                oldClrType: typeof(int));
+
+            migrationBuilder.AddColumn<string>(
+                name: "CartId",
+                table: "CartItems",
+                type: "nvarchar(max)",
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "OrderDetails",
@@ -238,6 +298,14 @@ namespace JaskiniaGier.Migrations
                 name: "IX_Orders_OrderDetailsId",
                 table: "Orders",
                 column: "OrderDetailsId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_CartItems_Games_GameId",
+                table: "CartItems",
+                column: "GameId",
+                principalTable: "Games",
+                principalColumn: "GameId",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Orders_Games_GameId",

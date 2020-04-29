@@ -7,9 +7,9 @@ namespace JaskiniaGier.Components
 {
     public class CartItemsCounter : ViewComponent
     {
-        private readonly Cart _cart;
+        private readonly CartService _cart;
 
-        public CartItemsCounter(Cart cart)
+        public CartItemsCounter(CartService cart)
         {
             _cart = cart;
         }

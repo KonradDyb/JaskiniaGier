@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 
 namespace JaskiniaGier.Models
 {
-    public class Cart
+    public class CartService
     {
         private readonly AppDbContext _appDbContext;
 
-        public string SessionCartId { get; set; }
+        public string SessionCartServiceId { get; set; }
 
         public List<CartItem> CartItems { get; set; }
 
 
-        public Cart()
+        public CartService()
         {
 
         }
-        public Cart(AppDbContext appDbContext)
+        public CartService(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
        
-        public static Cart GetCart(IServiceProvider services)
+        public static CartService GetCart(IServiceProvider services)
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?
                 .HttpContext.Session;
@@ -44,7 +44,7 @@ namespace JaskiniaGier.Models
 
             session.SetString("CartId", cartId); 
 
-            return new Cart(context) { SessionCartId = cartId };
+            return new CartService(context) { SessionCartServiceId = cartId };
            
         }
 
@@ -52,13 +52,13 @@ namespace JaskiniaGier.Models
         {
             var shoppingCartItem =
                     await Task.FromResult(_appDbContext.CartItems.SingleOrDefault(
-                        x => x.Game.GameId == game.GameId && x.CartId == SessionCartId));
+                        x => x.Game.GameId == game.GameId && x.SessionCartId == SessionCartServiceId));
 
             if (shoppingCartItem == null)
             {
                 shoppingCartItem = new CartItem
                 {
-                    CartId = SessionCartId,
+                    SessionCartId = SessionCartServiceId,
                     Game = game,
                     Amount = amount
                 };
@@ -76,7 +76,7 @@ namespace JaskiniaGier.Models
         {
             var shoppingCartItem =
                     await Task.FromResult(_appDbContext.CartItems.SingleOrDefault(
-                        x => x.Game.GameId == game.GameId && x.CartId == SessionCartId));
+                        x => x.Game.GameId == game.GameId && x.SessionCartId == SessionCartServiceId));
 
 
             if (shoppingCartItem != null)
@@ -93,7 +93,7 @@ namespace JaskiniaGier.Models
         }
 
         public async Task<List<CartItem>> GetCartItemsAsync() => await Task.FromResult(CartItems ??
-                   (CartItems = _appDbContext.CartItems.Where(x => x.CartId == SessionCartId)
+                   (CartItems = _appDbContext.CartItems.Where(x => x.SessionCartId == SessionCartServiceId)
                            .Include(x => x.Game)
                            .ToList()));
      
@@ -102,7 +102,7 @@ namespace JaskiniaGier.Models
         {
             var cartItems = await Task.FromResult(_appDbContext
                 .CartItems
-                .Where(x => x.CartId == SessionCartId));
+                .Where(x => x.SessionCartId == SessionCartServiceId));
 
             _appDbContext.CartItems.RemoveRange(cartItems);
 
@@ -110,7 +110,7 @@ namespace JaskiniaGier.Models
         }
 
         public async Task<int> GetCartTotalAsync() =>
-            await Task.FromResult(_appDbContext.CartItems.Where(x => x.CartId == SessionCartId)
+            await Task.FromResult(_appDbContext.CartItems.Where(x => x.SessionCartId == SessionCartServiceId)
                 .Select(x => x.Game.Price * x.Amount).Sum());
          
         

@@ -11,15 +11,15 @@ namespace JaskiniaGier.Models.Repositories
     public class OrderRepository : IOrderRepository
     {
         private readonly AppDbContext _appDbContext;
-        private readonly Cart _cart;
+        private readonly CartService _cart;
 
-        public OrderRepository(AppDbContext appDbContext, Cart cart)
+        public OrderRepository(AppDbContext appDbContext, CartService cart)
         {
             _appDbContext = appDbContext;
             _cart = cart;
         }
 
-        public async Task CreateShipDetailsAsync(Order order)
+        public async Task CreateOrderDetailsAsync(Order order)
         {
 
             order.OrderPlaced = DateTime.Now.ToString();
@@ -27,11 +27,11 @@ namespace JaskiniaGier.Models.Repositories
             var cartItems = _cart.CartItems;
             order.OrderTotal = await _cart.GetCartTotalAsync();
             
-            order.OrderItems = new List<OrderItems>();
+            order.OrderItems = new List<OrderItem>();
 
             foreach (var item in cartItems)
             {
-                var orderInfo = new OrderItems
+                var orderInfo = new OrderItem
                 {
                     Amount = item.Amount,
                     GameId = item.Game.GameId,
@@ -58,13 +58,13 @@ namespace JaskiniaGier.Models.Repositories
                         .GroupBy(x => x.Order.OrderPlaced)
                         .Select(g => new OrderDTO
                         {
-                            Id = g.OrderBy(e => e.OrderItemsId).FirstOrDefault().OrderItemsId,
+                            Id = g.OrderBy(e => e.OrderItemId).FirstOrDefault().OrderItemId,
                             OrderPlaced = g.Key,
                             Total = g.Sum(e => e.Price * e.Amount),
                         }
                          ).ToList());
 
-        public async Task<IIncludableQueryable<OrderItems, Game>> GetOrdersByAsync(string userId, 
+        public async Task<IIncludableQueryable<OrderItem, Game>> GetOrdersByAsync(string userId, 
             string orderPlaced) =>
         
             await Task.FromResult(_appDbContext.OrderItems.Where(x => x.Order.UserId == userId &&

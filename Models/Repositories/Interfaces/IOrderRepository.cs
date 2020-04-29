@@ -7,8 +7,8 @@ namespace JaskiniaGier.Models.Repositories
 {
     public interface IOrderRepository
     {
-        Task CreateShipDetailsAsync(Order order);
+        Task CreateOrderDetailsAsync(Order order);
         Task<List<OrderDTO>> GetOrdersByAsync(string userId);
-        Task<IIncludableQueryable<OrderItems, Game>> GetOrdersByAsync(string userId, string orderPlaced);
+        Task<IIncludableQueryable<OrderItem, Game>> GetOrdersByAsync(string userId, string orderPlaced);
     }
 }

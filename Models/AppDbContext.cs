@@ -16,7 +16,7 @@ namespace JaskiniaGier.Models
         public DbSet<Genre> Genres { get; set; }
         public DbSet<SubGenre> SubGenres { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
-        public DbSet<OrderItems> OrderItems { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Order> Orders  { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

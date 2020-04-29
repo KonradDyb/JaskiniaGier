@@ -9,7 +9,8 @@ namespace JaskiniaGier.Models.Entities
     {
         [BindNever]
         public int OrderId { get; set; }
-        public List<OrderItems> OrderItems { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
+        public int OrderItemId { get; set; }
         
         [Required(ErrorMessage = "Wpisz swoje imię!")]
         [StringLength(50)]

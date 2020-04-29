@@ -12,10 +12,10 @@ namespace JaskiniaGier.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly Cart _cart;
+        private readonly CartService _cart;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public OrderController(IOrderRepository orderRepository, Cart cart, 
+        public OrderController(IOrderRepository orderRepository, CartService cart, 
             UserManager<IdentityUser> userManager)
         {
             _orderRepository = orderRepository;
@@ -30,7 +30,7 @@ namespace JaskiniaGier.Controllers
 
         public async Task<IActionResult> ShowCompleteOrdersAsync()
         {
-            var userId = _userManager.GetUserId(User);
+            var userId = GetCurrentUserId();
             var orders = await _orderRepository.GetOrdersByAsync(userId);
 
             if (orders.IsAny())
@@ -49,10 +49,15 @@ namespace JaskiniaGier.Controllers
 
         public async Task<IActionResult> ShowCompleteOrderDetails(string orderPlaced)
         {
-            var userId = _userManager.GetUserId(User);
+            string userId = GetCurrentUserId();
             var order = await _orderRepository.GetOrdersByAsync(userId, orderPlaced);
 
             return View(order);
+        }
+
+        private string GetCurrentUserId()
+        {
+            return _userManager.GetUserId(User);
         }
 
         public IActionResult EmptyCart()
@@ -74,7 +79,7 @@ namespace JaskiniaGier.Controllers
             if (ModelState.IsValid)
             {
                 order.UserId = _userManager.GetUserId(User);
-                await _orderRepository.CreateShipDetailsAsync(order);
+                await _orderRepository.CreateOrderDetailsAsync(order);
                 await _cart.ClearCartAsync();
                 return RedirectToAction("CheckoutComplete");
             }

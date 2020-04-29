@@ -8,9 +8,9 @@ namespace JaskiniaGier.Controllers
 {
     public class PayController : Controller
     {
-        private readonly Cart _cart;
+        private readonly CartService _cart;
 
-        public PayController(Cart cart)
+        public PayController(CartService cart)
         {
             _cart = cart;
         }
