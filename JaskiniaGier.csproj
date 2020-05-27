@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="JaskiniaGier.Tests\**" />
+    <Compile Remove="wwwroot\lib\**" />
     <Content Remove="JaskiniaGier.Tests\**" />
+    <Content Remove="wwwroot\lib\**" />
     <EmbeddedResource Remove="JaskiniaGier.Tests\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
     <None Remove="JaskiniaGier.Tests\**" />
+    <None Remove="wwwroot\lib\**" />
   </ItemGroup>
 
   <ItemGroup>

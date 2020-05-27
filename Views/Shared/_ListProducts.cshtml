@@ -13,13 +13,13 @@
                 <div class="product-grid">
 
                     <div class="product-image">
-                        <a asp-controller="Game" asp-action="ShowDetails" asp-route-productId=@game.GameId>
+                        <a asp-controller="Game" asp-action="ShowGameDetails" asp-route-productId=@game.GameId>
                             <img class="pic-1" src="~/images/@game.ImagePath">
                         </a>
                     </div>
                     <div class="product-content">
                         <h3 class="title">
-                            <a asp-controller="Game" asp-action="ShowDetails" asp-route-productId=@game.GameId>@game.Title</a>
+                            <a asp-controller="Game" asp-action="ShowGameDetails" asp-route-productId=@game.GameId>@game.Title</a>
                         </h3>
 
                         <div class="price">@game.Price.ToString() zł</div>
